@@ -8,11 +8,11 @@ public class ProductModel {
     private String category;
     private int stock_quantity;
 
-    public  void setId(int _id) {
+    public static void setId(int _id) {
         id = _id;
     }
 
-    public  int getId() {
+    public static int getId() {
         return id;
     }
     public void setName (String _name) {
