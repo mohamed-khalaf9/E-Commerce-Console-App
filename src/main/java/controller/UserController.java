@@ -9,6 +9,11 @@ public class UserController {
     private UserService service;
     private UserModel currUser;
 
+    private boolean signUP(){
+        String[] userInfo = view.getSinUPInfo();
+        return service.SignUP(userInfo);
+    }
+
     public UserController() {
         view = new UserView();
         service = new UserService();
