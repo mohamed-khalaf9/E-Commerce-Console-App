@@ -10,7 +10,7 @@ public class UserController {
     private UserModel currUser;
 
     private boolean signUP(){
-        String[] userInfo = view.getSinUPInfo();
+        String[] userInfo = view.getSignUpInfo();
         return service.SignUP(userInfo);
     }
 
