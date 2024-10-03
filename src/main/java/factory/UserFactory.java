@@ -9,9 +9,11 @@ public class UserFactory {
         {
             case ADMIN:
                 return new AdminModel(name,email,password,role);
-                break;
+
             case CUSTOMER:
                 return new CustomerModel(name,email,password,role);
+
+
         }
         return null;
 
