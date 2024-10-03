@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class CustomerModel {
     private CartModel customerCart;
-    private HashMap <Integer ,OrderModel> customerOrders;
+    private Map <Integer ,OrderModel> customerOrders;
 
 
     public void setCustomerCart(CartModel _customerCart) {
