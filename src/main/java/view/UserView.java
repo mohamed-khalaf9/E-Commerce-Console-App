@@ -40,4 +40,24 @@ public class UserView {
         System.out.println(message);
     }
 
+    public String[] getSignUpInfo(){
+        Scanner scanner = new Scanner(System.in);
+        String[] info = new String[2];
+
+        try {
+            System.out.println("Enter Name: ");
+            info[0] = scanner.nextLine();
+            System.out.println("Enter Email: ");
+            info[1] = scanner.nextLine();
+            System.out.println("Enter Password: ");
+            info[2] = scanner.nextLine();
+
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input, try again....");
+            scanner.nextLine();
+            return getSignUpInfo();
+        }
+        return  info;
+    }
+
 }
