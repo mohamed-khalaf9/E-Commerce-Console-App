@@ -16,6 +16,7 @@ public class ECommerce {
         while(true)
         {
             curUser = controller.accessSystem();
+            break;
 
         }
     }
