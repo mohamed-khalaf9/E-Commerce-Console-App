@@ -6,6 +6,14 @@ public class UserModel {
     private  String password;
     private Role role;
 
+    public UserModel(){}
+    public UserModel(String name, String email, String password, Role role) {
+        setName(name);
+        setEmail(email);
+        setPassword(password);
+        setRole(role);
+    }
+
     public void setName(String name) {
         this.name = name;
     }
