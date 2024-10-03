@@ -7,6 +7,7 @@ public class UserView {
 
     public int startMenu(){
         int option = 0;
+        Scanner scanner = new Scanner(System.in);
         try{
             while(true){
                 System.out.println("Welcome to the E-Commerce Console Application");
@@ -15,7 +16,7 @@ public class UserView {
                 System.out.println("2. Login");
                 System.out.println("3. Exit");
 
-                Scanner scanner = new Scanner(System.in);
+
                 option = scanner.nextInt();
 
                 if(option<1 || option>3){
@@ -29,6 +30,7 @@ public class UserView {
 
         }catch(InputMismatchException e){
             System.out.println("Invalid option, try again....");
+            scanner.nextLine();
             startMenu();
 
         }
