@@ -13,6 +13,10 @@ public class UserController {
         String[] userInfo = view.getSignUpInfo();
         return service.SignUP(userInfo);
     }
+    private boolean login(){
+        String[] loginInfo = view.getLoginInfo();
+        return service.login(loginInfo);
+    }
 
     public UserController() {
         view = new UserView();
@@ -40,7 +44,7 @@ public class UserController {
                         }
 
                     case 2:
-                        //isAccessSuccess = login();
+                        isAccessSuccess = login();
                         if (isAccessSuccess) {
                             currUser = service.getCurUser();
                             view.showMessage("Login Successful! Welcome, "+ currUser.getName());
