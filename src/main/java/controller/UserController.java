@@ -51,7 +51,7 @@ public class UserController {
                             continue;
                         }
 
-                    default:
+                    case 3:
                         throw new Exception();
 
                 }
