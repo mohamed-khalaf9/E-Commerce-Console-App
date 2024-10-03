@@ -27,7 +27,7 @@ public class CustomerModel extends UserModel{
          customerOrders.put(OrderModel.getId(),order);
     }
 
-    public HashMap<Integer, OrderModel> getCustomerOrders() {
-        return customerOrders;
-    }
+   // public HashMap<Integer, OrderModel> getCustomerOrders() {
+//return customerOrders;
+    //}
 }

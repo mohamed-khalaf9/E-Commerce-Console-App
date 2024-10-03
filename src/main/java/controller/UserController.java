@@ -38,9 +38,9 @@ public class UserController {
                             view.showMessage("User already exist , try again ...");
                             continue;
                         }
-                        break;
+
                     case 2:
-                        isAccessSuccess = login();
+                        //isAccessSuccess = login();
                         if (isAccessSuccess) {
                             currUser = service.getCurUser();
                             view.showMessage("Login Successful! Welcome, "+ currUser.getName());
@@ -50,7 +50,7 @@ public class UserController {
                             view.showMessage(" Email or Password is not correct , try again ...");
                             continue;
                         }
-                        break;
+
                     default:
                         throw new Exception();
 
