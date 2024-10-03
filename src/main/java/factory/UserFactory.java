@@ -11,7 +11,7 @@ public class UserFactory {
                 return new AdminModel(name,email,password,role);
                 break;
             case CUSTOMER:
-                return CustomerModel(name,email,password,role);
+                return new CustomerModel(name,email,password,role);
         }
         return null;
 
