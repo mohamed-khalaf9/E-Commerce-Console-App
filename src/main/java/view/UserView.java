@@ -36,8 +36,8 @@ public class UserView {
 
     }
 
-    //public void showMessage(String message){
-
-    //}
+    public void showMessage(String message){
+        System.out.println(message);
+    }
 
 }
