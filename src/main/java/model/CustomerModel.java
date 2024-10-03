@@ -1,10 +1,18 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class CustomerModel {
+public class CustomerModel extends UserModel{
     private CartModel customerCart;
-    private Map <Integer ,OrderModel> customerOrders;
+    private Map<Integer ,OrderModel> customerOrders;
+
+    public CustomerModel(String name,String email,String password ,Role role) {
+        super(name,email,password,role);
+        customerOrders = new HashMap<>();
+        customerCart = new CartModel();
+
+    }
 
 
     public void setCustomerCart(CartModel _customerCart) {
