@@ -62,6 +62,8 @@ public class UserController {
             System.exit(0);
         }
 
+        return currUser;
+
 
     }
 }
