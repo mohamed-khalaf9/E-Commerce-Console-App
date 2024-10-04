@@ -21,6 +21,9 @@ public class AdminController extends BaseController {
     private void viewOrders(){
 
     }
+    private void manageInventory(){
+
+    }
 
 
 
