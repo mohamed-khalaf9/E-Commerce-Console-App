@@ -1,6 +1,8 @@
 package controller;
 
+import model.ProductModel;
 import service.AdminService;
+import service.ProductService;
 import view.AdminView;
 
 import java.util.ArrayList;
@@ -24,6 +26,65 @@ public class AdminController extends BaseController {
 
     }
     private void updateProduct(){
+        String category ="" ;
+        ProductModel productToBeUpdated;
+        int toBeUpdated ;
+
+
+        ProductService productService = ProductService.getInstance();
+        ArrayList<String> categories = productService.getCategories();
+        if(categories.size()>0){
+            int choice = view.showMenu(categories,"Available Categories , Select One: ");
+            category = categories.get(--choice);
+        }
+        else{
+            view.showMessage("No categories found");
+            return;
+        }
+
+
+        ArrayList<String> productsToBedisplayed = new ArrayList<>();
+        ProductModel[] productsOfCategory = productService.getProductsOfCategory(category);
+        for(ProductModel product : productsOfCategory){
+            productsToBedisplayed.add(product.getName()+" - "+product.getPrice()+" - stock: "+product.getStock_quantity());
+        }
+        int productNumber = view.showMenu(productsToBedisplayed,"Avaliable Products in "+ category+ ", Plz Select Product Number: ");
+        productToBeUpdated = productsOfCategory[productNumber-1];
+
+        ArrayList<String> menu = new ArrayList<>();
+        menu.add("Price");
+        menu.add("Description");
+        menu.add("Stock");
+        toBeUpdated = view.showMenu(menu,"Enter your choice:");
+
+        switch(toBeUpdated){
+            case 1:
+                double price = view.askForDoubleInput("Enter the new Price: ");
+
+                if( service.updateProductPrice(category,productToBeUpdated,price))
+                    view.showMessage("Product "+productToBeUpdated.getName()+" has been updated successfully!");
+                else
+                    view.showMessage("failed to update product , try again .... ");
+                break;
+            case 2:
+
+                String description = view.askForStringInput("Enter the new Description: ");
+                if(service.updateProductDescription(category,productToBeUpdated,description))
+                    view.showMessage("Product "+productToBeUpdated.getName()+" has been updated successfully!");
+                else
+                    view.showMessage("failed to update product , try again .... ");
+                break;
+            case 3:
+                int stock = view.askForIntInput("Enter the new Stock: ");
+                if(service.updateProductStock(category,productToBeUpdated,stock))
+                    view.showMessage("Product "+productToBeUpdated.getName()+" has been updated successfully!");
+                else
+                    view.showMessage("failed to update product , try again .... ");
+                break;
+        }
+
+
+
 
     }
     private void removeProduct(){
