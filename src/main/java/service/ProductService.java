@@ -40,6 +40,94 @@ public class ProductService {
         return true;
 
     }
+
+    public ArrayList<String> getCategories() {
+        ArrayList<String> categories = new ArrayList<>(category_products.keySet());
+        return categories;
+    }
+
+    public ProductModel[] getProductsOfCategory(String category) {
+        if (category_products.containsKey(category)) {
+            ArrayList<ProductModel> productsList = category_products.get(category);
+            ProductModel[] productsArray = productsList.toArray(new ProductModel[productsList.size()]);
+            return productsArray;
+        } else {
+            return new ProductModel[0];
+        }
+    }
+
+    public boolean updateProductPrice(String category, ProductModel productToBeUpdated, double price) {
+        int productId = productToBeUpdated.getId();
+        boolean isCategoryUpdated = false;
+        if (category_products.containsKey(category)) {
+            ArrayList<ProductModel> productsInCategory = category_products.get(category);
+            for (ProductModel product : productsInCategory) {
+                if (product.getId() == productId) {
+                    product.setPrice(price);
+                    isCategoryUpdated = true;
+                    break;
+                }
+            }
+        }
+        else return false;
+
+        if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
+            productId_productObj.get(productId).setPrice(price);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public boolean updateProductDescription(String category, ProductModel productToBeUpdated, String description) {
+        int productId = productToBeUpdated.getId();
+        boolean isCategoryUpdated = false;
+        if (category_products.containsKey(category)) {
+            ArrayList<ProductModel> productsInCategory = category_products.get(category);
+            for (ProductModel product : productsInCategory) {
+                if (product.getId() == productId) {
+                    product.setDescreption(description);
+                    isCategoryUpdated = true;
+                    break;
+                }
+            }
+        }
+        else return false;
+
+        if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
+            productId_productObj.get(productId).setDescreption(description);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public boolean updateProductStock(String category, ProductModel productToBeUpdated, int stock) {
+        int productId = productToBeUpdated.getId();
+        boolean isCategoryUpdated = false;
+        if (category_products.containsKey(category)) {
+            ArrayList<ProductModel> productsInCategory = category_products.get(category);
+            for (ProductModel product : productsInCategory) {
+                if (product.getId() == productId) {
+                    product.setStock_quantity(stock);
+                    isCategoryUpdated = true;
+                    break;
+                }
+            }
+        }
+        else return false;
+
+        if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
+            productId_productObj.get(productId).setStock_quantity(stock);
+            return true;
+        }
+        else
+            return false;
+    }
+
+
+
+
 }
 
 
