@@ -9,6 +9,11 @@ public class AdminController extends BaseController {
     private AdminView view;
     private AdminService service;
 
+    private void addProduct(){
+
+    }
+
+
     public AdminController( AdminService service) {
         this.service = service;
     }
