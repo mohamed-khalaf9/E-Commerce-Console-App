@@ -68,6 +68,23 @@ public class AdminView {
 
 
     }
+    public int askForIntInput(String message){
+        int ret = 0;
+        try{
+            Scanner input = new Scanner(System.in);
+            System.out.print(message);
+            ret = input.nextInt();
+
+        }catch (InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+            askForIntInput(message);
+        }
+
+        return ret;
+
+
+    }
 
 
 
