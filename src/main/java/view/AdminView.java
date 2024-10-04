@@ -34,4 +34,23 @@ public class AdminView {
        return option;
     }
 
+    public String askForStringInput(String message){
+        String ret = "";
+        try{
+            Scanner input = new Scanner(System.in);
+            System.out.print(message);
+            ret = input.nextLine();
+
+        }catch (InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+            askForStringInput(message);
+        }
+
+        return ret;
+
+
+    }
+
+
 }
