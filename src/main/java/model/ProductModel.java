@@ -3,7 +3,7 @@ package model;
 public class ProductModel {
     private static int id = 0;
     private String name;
-    private String price;
+    private double price;
     private String descreption;
     private String category;
     private int stock_quantity;
