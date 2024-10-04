@@ -18,6 +18,9 @@ public class AdminController extends BaseController {
     private void removeProduct(){
 
     }
+    private void viewOrders(){
+
+    }
 
 
 
