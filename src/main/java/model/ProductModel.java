@@ -8,6 +8,16 @@ public class ProductModel {
     private String category;
     private int stock_quantity;
 
+    public ProductModel(String name, double price, String descreption, String category, int stock_quantity)
+    {
+        setName(name);
+        setPrice(price);
+        setDescreption(descreption);
+        setCategory(category);
+        setStock_quantity(stock_quantity);
+        this.id = ++id;
+    }
+
     public static void setId(int _id) {
         id = _id;
     }
