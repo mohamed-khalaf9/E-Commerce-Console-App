@@ -29,6 +29,7 @@ public class AdminController extends BaseController {
 
     public AdminController( AdminService service) {
         this.service = service;
+        view = new AdminView();
     }
 
     public void run(){
