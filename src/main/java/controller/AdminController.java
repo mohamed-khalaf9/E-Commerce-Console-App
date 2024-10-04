@@ -15,6 +15,9 @@ public class AdminController extends BaseController {
     private void updateProduct(){
 
     }
+    private void removeProduct(){
+
+    }
 
 
 
