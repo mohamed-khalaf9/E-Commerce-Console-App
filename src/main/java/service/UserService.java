@@ -11,9 +11,15 @@ public class UserService {
     private Map<String , UserModel> users ; // userEmail->UserModelObject
     private UserModel curUser;
 
+    private void loadAdmins(){
+        UserModel admin1 = UserFactory.CreateUser("mohamed","mohamed00@gmail.com","19",Role.ADMIN);
+        users.put(admin1.getEmail(), admin1);
+    }
+
     public UserService() {
         users = new HashMap<>();
         curUser = new UserModel();
+        loadAdmins();
     }
 
     public boolean SignUP(String[] info) {
