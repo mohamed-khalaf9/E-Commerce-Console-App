@@ -10,6 +10,17 @@ public class AdminController extends BaseController {
     private AdminService service;
 
     private void addProduct(){
+        String name = view.askForStringInput("Enter Product Name: ");
+        double price = view.askForDoubleInput("Enter Product Price: ");
+        String description = view.askForStringInput("Enter Product Description: ");
+        int quantity = view.askForIntInput("Enter Product quantity: ");
+        String category = view.askForStringInput("Enter Product Category: (starts with uppercase letter)");
+
+
+        if(service.addProduct(name,price,description,quantity,category))
+            view.showMessage("Product "+name+" has been added to the ("+category+") category successfully!");
+        else
+            view.showMessage("failed to add product , try again .... ");
 
     }
     private void updateProduct(){

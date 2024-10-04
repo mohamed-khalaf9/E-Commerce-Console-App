@@ -34,4 +34,63 @@ public class AdminView {
        return option;
     }
 
+    public String askForStringInput(String message){
+        String ret = "";
+        try{
+            Scanner input = new Scanner(System.in);
+            System.out.print(message);
+            ret = input.nextLine();
+
+        }catch (InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+            askForStringInput(message);
+        }
+
+        return ret;
+
+
+    }
+    public double askForDoubleInput(String message){
+        double ret = 0;
+        try{
+            Scanner input = new Scanner(System.in);
+            System.out.print(message);
+            ret = input.nextDouble();
+
+        }catch (InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+            askForDoubleInput(message);
+        }
+
+        return ret;
+
+
+    }
+    public int askForIntInput(String message){
+        int ret = 0;
+        try{
+            Scanner input = new Scanner(System.in);
+            System.out.print(message);
+            ret = input.nextInt();
+
+        }catch (InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+            askForIntInput(message);
+        }
+
+        return ret;
+
+
+    }
+
+    public void showMessage(String message)
+    {
+        System.out.println(message);
+    }
+
+
+
 }

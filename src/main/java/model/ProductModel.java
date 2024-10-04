@@ -1,12 +1,22 @@
 package model;
 
 public class ProductModel {
-    private static int id;
+    private static int id = 0;
     private String name;
-    private String price;
+    private double price;
     private String descreption;
     private String category;
     private int stock_quantity;
+
+    public ProductModel(String name, double price, String descreption, String category, int stock_quantity)
+    {
+        setName(name);
+        setPrice(price);
+        setDescreption(descreption);
+        setCategory(category);
+        setStock_quantity(stock_quantity);
+        this.id = ++id;
+    }
 
     public static void setId(int _id) {
         id = _id;
@@ -23,11 +33,11 @@ public class ProductModel {
         return name;
     }
 
-    public void setPrice(String _price) {
+    public void setPrice(double _price) {
         price = _price;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
