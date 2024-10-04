@@ -23,11 +23,11 @@ public class ProductModel {
         return name;
     }
 
-    public void setPrice(String _price) {
+    public void setPrice(double _price) {
         price = _price;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
