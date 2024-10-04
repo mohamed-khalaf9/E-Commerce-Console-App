@@ -51,6 +51,24 @@ public class AdminView {
 
 
     }
+    public double askForDoubleInput(String message){
+        double ret = 0;
+        try{
+            Scanner input = new Scanner(System.in);
+            System.out.print(message);
+            ret = input.nextDouble();
+
+        }catch (InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+            askForDoubleInput(message);
+        }
+
+        return ret;
+
+
+    }
+
 
 
 }
