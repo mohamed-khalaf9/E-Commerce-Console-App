@@ -31,6 +31,24 @@ public class UserService {
         return true;
     }
 
+    public boolean login(String[] info) {
+        String email = info[0];
+        String password = info[1];
+
+        if(!users.containsKey(email)) {
+            return false;
+        }
+        UserModel user = users.get(email);
+        if(password.equals(user.getPassword())) {
+            curUser = user;
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
 
 
 

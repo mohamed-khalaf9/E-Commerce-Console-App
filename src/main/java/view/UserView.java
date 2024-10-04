@@ -62,4 +62,22 @@ public class UserView {
         return  info;
     }
 
+    public String[] getLoginInfo(){
+        Scanner scanner = new Scanner(System.in);
+        String[] info = new String[2];
+
+        try {
+            System.out.println("Enter Email: ");
+            info[0] = scanner.nextLine();
+            System.out.println("Enter Password: ");
+            info[1] = scanner.nextLine();
+
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input, try again....");
+            scanner.nextLine();
+            getLoginInfo();
+        }
+        return  info;
+    }
+
 }

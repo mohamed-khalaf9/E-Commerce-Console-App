@@ -1,4 +1,6 @@
 package controller;
 
-public class BaseController {
+public abstract class BaseController {
+
+    public abstract void run ();
 }
