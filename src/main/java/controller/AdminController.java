@@ -12,6 +12,10 @@ public class AdminController extends BaseController {
     private void addProduct(){
 
     }
+    private void updateProduct(){
+
+    }
+
 
 
     public AdminController( AdminService service) {
