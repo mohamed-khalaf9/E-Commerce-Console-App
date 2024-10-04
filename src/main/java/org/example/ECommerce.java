@@ -1,6 +1,8 @@
 package org.example;
 
+import controller.BaseController;
 import controller.UserController;
+import factory.ControllerFactory;
 import model.UserModel;
 import view.UserView;
 
@@ -16,7 +18,10 @@ public class ECommerce {
         while(true)
         {
             curUser = controller.accessSystem();
-            break;
+            BaseController controller2 = ControllerFactory.createController(curUser);
+            controller2.run();
+
+
 
         }
     }
