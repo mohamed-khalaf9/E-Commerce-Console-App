@@ -3,17 +3,24 @@ package model;
 import java.util.ArrayList;
 
 public class OrderModel {
-    private static int id;
+    private int id;
+    private static int idCounter = 1;
     private String customerEmail;
     private ArrayList<CartItemModel> orderProducts;
     private double totalPrice;
     private String paymentMethod;
 
-    public static void setId(int id) {
-        OrderModel.id = id;
+
+    public OrderModel(String customerEmail, ArrayList<CartItemModel> orderProducts, double totalPrice, String paymentMethod) {
+        this.id = idCounter++;
+        setCustomerEmail(customerEmail);
+        setTotalPrice(totalPrice);
+        setPaymentMethod(paymentMethod);
+        setOrderProducts(orderProducts);
+
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -25,8 +32,10 @@ public class OrderModel {
         return customerEmail;
     }
 
-    public void setOrderProducts(CartItemModel item) {
-        orderProducts.add(item);
+    public void setOrderProducts(ArrayList<CartItemModel> orderProducts) {
+        for(CartItemModel cartItem : orderProducts) {
+            this.orderProducts.add(cartItem);
+        }
     }
 
     public ArrayList<CartItemModel> getOrderProducts() {

@@ -116,6 +116,13 @@ public class AdminView {
         return ret;
     }
 
+    public void showList(ArrayList<String> listOfItems)
+    {
+        for (int i = 0; i < listOfItems.size(); i++)
+            System.out.println((i+1)+" "+listOfItems.get(i));
+    }
+
+
 
 
 }
