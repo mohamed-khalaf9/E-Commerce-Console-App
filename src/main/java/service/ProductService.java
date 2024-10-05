@@ -125,6 +125,31 @@ public class ProductService {
             return false;
     }
 
+    public boolean removeProduct(String category,int productId){
+        boolean isCategoryUpdated = false;
+
+        if (category_products.containsKey(category)) {
+            ArrayList<ProductModel> productsInCategory = category_products.get(category);
+            for (ProductModel product : productsInCategory) {
+                if (product.getId() == productId) {
+                    category_products.get(category).remove(product);
+                    isCategoryUpdated = true;
+                    break;
+                }
+            }
+        }
+            if(isCategoryUpdated && productId_productObj.containsKey(productId))
+            {
+                productId_productObj.remove(productId);
+                return true;
+            }
+            else
+                return false;
+
+
+        }
+
+
 
 
 
