@@ -28,6 +28,12 @@ public class AdminService {
         return productService.updateProductStock(category, productToBeUpdated,stock);
     }
 
+    public boolean removeProduct(String category,int productId)
+    {
+        ProductService productService = ProductService.getInstance();
+        return productService.removeProduct(category,productId);
+    }
+
 
 
 }
