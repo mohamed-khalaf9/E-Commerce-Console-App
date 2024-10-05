@@ -14,13 +14,34 @@ public class CustomerController extends BaseController {
 
     public CustomerController( CustomerService service) {
         this.service = service;
+        view=new CustomerView();
     }
 
     public void run(){
         Scanner scanner = new Scanner(System.in);
+        ArrayList<String> menu= new ArrayList<>();
+        menu.add("Browse products");
+        menu.add("View cart");
+        menu.add("View order history");
+        menu.add("Logout");
         while(true)
         {
-
+             int option =view.showMenu(menu,"Please select an option");
+              
+              switch (option) {
+                  case 1:
+                      BrowseProducts();
+                      break;
+                  case 2:
+                      //viewCart();
+                      break;
+                  case 3:
+                      //viewOrderHistory();
+                      break;
+                  case 4:
+                      option = -1;
+                      break;
+              }
         }
 
     }
@@ -36,7 +57,7 @@ public class CustomerController extends BaseController {
                     String category = lst.get(option-1);
                     ArrayList<String> products= new ArrayList<String>();
                     for(int i=0;i<service.BrowseProducts(category).length;i++){
-                        products.add(service.BrowseProducts(category)[i].ToString());
+                       // products.add(service.BrowseProducts(category)[i].ToString());
                     }
                     String str= "Available Products in "+category;
                     view.showMenu(products, str);
