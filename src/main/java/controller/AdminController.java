@@ -136,6 +136,23 @@ public class AdminController extends BaseController {
 
     }
     private void manageInventory(){
+        String category = "";
+        int productId = -1;
+        int quantity = -1;
+        ProductService productService = ProductService.getInstance();
+
+
+        category = displayCategories();
+        if(category=="") return;
+        productId = displayProductsOfCategory(category);
+        if(productId==-1) return;
+
+        ProductModel product = productService.getProductById(productId);
+        quantity = view.askForIntInput("Enter the new Stock Quantity: ");
+        if(service.updateProductStock(category,productId,quantity))
+            view.showMessage("Stock updated successfully! "+product.getName()+" now has "+ quantity+" units available.");
+        else
+            view.showMessage("failed to update product , try again .... ");
 
     }
 
