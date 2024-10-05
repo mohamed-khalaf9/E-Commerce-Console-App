@@ -1,7 +1,10 @@
 package controller;
 
+import model.CartItemModel;
+import model.OrderModel;
 import model.ProductModel;
 import service.AdminService;
+import service.OrderService;
 import service.ProductService;
 import view.AdminView;
 
@@ -133,6 +136,35 @@ public class AdminController extends BaseController {
 
     }
     private void viewOrders(){
+        OrderService orderService = OrderService.getInstance();
+        ArrayList<OrderModel> orders = orderService.getAllOrders();
+
+        ArrayList<String> toBeDisplayed = new ArrayList<>();
+
+        for (OrderModel order : orders) {
+            StringBuilder orderDetails = new StringBuilder(); // Using StringBuilder for efficient string concatenation
+
+            orderDetails.append("Order ID: ").append(order.getId()).append("\n");
+
+
+            orderDetails.append("Customer Email: ").append(order.getCustomerEmail()).append("\n");
+
+
+            orderDetails.append("Products: ");
+            for (CartItemModel cartItem : order.getOrderProducts()) {
+                orderDetails.append(cartItem.getItem().getName())
+                        .append(" - Quantity: ").append(cartItem.getQuantity())
+                        .append("\n");
+            }
+
+            orderDetails.append("Total Price: $").append(String.format("%.2f", order.getTotalPrice())).append("\n");
+            orderDetails.append("Payment Method: ").append(order.getPaymentMethod()).append("\n");
+            toBeDisplayed.add(orderDetails.toString());
+
+        }
+
+        view.showList(toBeDisplayed);
+
 
     }
     private void manageInventory(){
