@@ -1,7 +1,8 @@
 package model;
 
 public class ProductModel {
-    private static int id = 0;
+    private  int id ;
+    private  static int  idCounter = 1;
     private String name;
     private double price;
     private String descreption;
@@ -15,14 +16,12 @@ public class ProductModel {
         setDescreption(descreption);
         setCategory(category);
         setStock_quantity(stock_quantity);
-        this.id = ++id;
+        this.id = idCounter++;
     }
 
-    public static void setId(int _id) {
-        id = _id;
-    }
 
-    public static int getId() {
+
+    public  int getId() {
         return id;
     }
     public void setName (String _name) {
