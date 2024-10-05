@@ -1,17 +1,14 @@
 package service;
 
-import model.CartItemModel;
-import model.CartModel;
-import model.ProductModel;
-import model.UserModel;
+import model.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CustomerService {
-    private UserModel curCustomer;
+    private CustomerModel curCustomer;
 
-    public CustomerService(UserModel curCustomer) {
+    public CustomerService(CustomerModel curCustomer) {
         this.curCustomer = curCustomer;
     }
 
@@ -25,9 +22,14 @@ public class CustomerService {
 
             if (quantity <= product.getStock_quantity()) {
                 CartItemModel item = new CartItemModel(product, quantity);
+                if(curCustomer.getCustomerCart()==null){
                 CartModel cart =new CartModel();
-                cart.setCartItems(item);
-               // curCustomer.setCustomerCart(cart);
+                    cart.setCartItems(item);
+                    curCustomer.setCustomerCart(cart);
+                 }
+                else {
+                    curCustomer.getCustomerCart().setCartItems(item);
+                }
                 return true;
             } else {
                 throw new IllegalArgumentException("this quantity is greater than stock amount");
