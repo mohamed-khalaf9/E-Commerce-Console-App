@@ -27,7 +27,7 @@ public class CustomerService {
                 CartItemModel item = new CartItemModel(product, quantity);
                 CartModel cart =new CartModel();
                 cart.setCartItems(item);
-                curCustomer.setCustomerCart(cart);
+               // curCustomer.setCustomerCart(cart);
                 return true;
             } else {
                 throw new IllegalArgumentException("this quantity is greater than stock amount");

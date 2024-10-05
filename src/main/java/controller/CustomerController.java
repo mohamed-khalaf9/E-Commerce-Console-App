@@ -49,16 +49,14 @@ public class CustomerController extends BaseController {
         try{
             while(true){
                 ArrayList<String> lst =ProductService.getInstance().getCategories();
-                view.showMenu(lst,"Available Categories");
-                int option= view.askForInput("please select an option : ");
-                if(option>=lst.size()||option<=0)
-                    throw new IllegalArgumentException("choose a proper number");
-                else{
+                int option=view.showMenu(lst,"Available Categories");
+
+
                     String category = lst.get(option-1);
                     ArrayList<String> products= new ArrayList<String>();
                     for(int i=0;i<service.BrowseProducts(category).length;i++){
-                       // products.add(service.BrowseProducts(category)[i].ToString());
-                    }
+                        products.add(service.BrowseProducts(category)[i].ToString());
+
                     String str= "Available Products in "+category;
                     view.showMenu(products, str);
                     ArrayList<String>options =new ArrayList<String>();
