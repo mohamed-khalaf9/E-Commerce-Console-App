@@ -1,21 +1,26 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CartModel {
-    private static int cartItemNumber = 1;
-    private HashMap<Integer,CartItemModel> cartItems;
+    private static int cartItemNumber = 0;
+    private Map<Integer,CartItemModel> cartItems;
     private double totalPrice;
 
+    public CartModel(){
+        this.cartItemNumber=++cartItemNumber;
+        this.cartItems= new HashMap<>();
+    }
     public double getTotalPrice() {
         return totalPrice;
     }
 
     public void setCartItems( CartItemModel Item) {
-        cartItems.put(cartItemNumber++,Item);
+        cartItems.put(cartItemNumber,Item);
     }
 
-    public HashMap<Integer, CartItemModel> getCartItems() {
+    public Map<Integer, CartItemModel> getCartItems() {
         return cartItems;
     }
 }
