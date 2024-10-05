@@ -47,9 +47,15 @@ public class CustomerView {
     public void informMessage(String message){
         System.out.println(message);
     }
-    public void showCategoryProducts(ArrayList<String> lst,String headLine){
-        for (int i = 0; i < lst.size(); i++) {
-            System.out.println((i + 1) + ". " + lst.get(i));
+    public boolean showCategoryProducts(ArrayList<String> lst,String headLine){
+        if(lst.size()==0) {
+           return false;
+        }
+        else {
+            for (int i = 0; i < lst.size(); i++) {
+                System.out.println((i + 1) + ". " + lst.get(i));
+            }
+            return true;
         }
     }
 
