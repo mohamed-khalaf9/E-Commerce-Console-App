@@ -87,7 +87,66 @@ public class AdminController extends BaseController {
 
 
     }
+
+    private String displayCategories(){
+        String category;
+        ProductService productService = ProductService.getInstance();
+        ArrayList<String> categories = productService.getCategories();
+        if(categories.size()>0){
+            int choice = view.showMenu(categories,"Available Categories , Select One: ");
+            category = categories.get(--choice);
+            return category;
+        }
+        else{
+            view.showMessage("No categories found");
+            return "";
+        }
+    }
+
+    private int displayProductsOfCategory(String category) {
+        int productId = -1;
+        ProductService productService = ProductService.getInstance();
+
+        ArrayList<String> productsToBeDisplayed = new ArrayList<>();
+        ProductModel[] productsOfCategory = productService.getProductsOfCategory(category);
+
+        if (productsOfCategory.length <= 0) {
+            view.showMessage("No products found");
+            return -1;
+        } else {
+            for (ProductModel product : productsOfCategory) {
+                productsToBeDisplayed.add(product.getName() + " - " + product.getPrice() + " - stock: " + product.getStock_quantity());
+            }
+
+            int productNumber = view.showMenu(productsToBeDisplayed, "Available Products in " + category + ", Please Select Product Number: ");
+
+            ProductModel productToBeUpdated = productsOfCategory[productNumber - 1];
+            productId = productToBeUpdated.getId();
+            return productId;
+        }
+    }
+
+
     private void removeProduct(){
+        String category = "";
+        int productId = 0;
+
+        category = displayCategories();
+        if(category=="") return;
+
+        productId = displayProductsOfCategory(category);
+        if(productId==-1) return;
+
+        if(view.confirmationMessage("Are you sure you want to remove iPhone 15? (Y/N):") == 'Y') {
+           if(service.removeProduct(category, productId))
+           {
+               view.showMessage("Product "+productId+" has been removed successfully!");
+           }
+           else
+               view.showMessage("failed to remove product , try again .... ");
+        }
+        else
+            return;
 
     }
     private void viewOrders(){
