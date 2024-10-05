@@ -1,6 +1,7 @@
 package service;
 
 import model.CartItemModel;
+import model.CartModel;
 import model.ProductModel;
 import model.UserModel;
 
@@ -24,7 +25,9 @@ public class CustomerService {
 
             if (quantity <= product.getStock_quantity()) {
                 CartItemModel item = new CartItemModel(product, quantity);
-                curCustomer.getCart().setCartItems(item);
+                CartModel cart =new CartModel();
+                cart.setCartItems(item);
+                curCustomer.setCustomerCart(cart);
                 return true;
             } else {
                 throw new IllegalArgumentException("this quantity is greater than stock amount");
