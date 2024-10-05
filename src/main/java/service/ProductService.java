@@ -56,8 +56,7 @@ public class ProductService {
         }
     }
 
-    public boolean updateProductPrice(String category, ProductModel productToBeUpdated, double price) {
-        int productId = productToBeUpdated.getId();
+    public boolean updateProductPrice(String category, int productId, double price) {
         boolean isCategoryUpdated = false;
         if (category_products.containsKey(category)) {
             ArrayList<ProductModel> productsInCategory = category_products.get(category);
@@ -79,8 +78,7 @@ public class ProductService {
             return false;
     }
 
-    public boolean updateProductDescription(String category, ProductModel productToBeUpdated, String description) {
-        int productId = productToBeUpdated.getId();
+    public boolean updateProductDescription(String category, int productId, String description) {
         boolean isCategoryUpdated = false;
         if (category_products.containsKey(category)) {
             ArrayList<ProductModel> productsInCategory = category_products.get(category);
@@ -102,8 +100,7 @@ public class ProductService {
             return false;
     }
 
-    public boolean updateProductStock(String category, ProductModel productToBeUpdated, int stock) {
-        int productId = productToBeUpdated.getId();
+    public boolean updateProductStock(String category, int productId, int stock) {
         boolean isCategoryUpdated = false;
         if (category_products.containsKey(category)) {
             ArrayList<ProductModel> productsInCategory = category_products.get(category);
