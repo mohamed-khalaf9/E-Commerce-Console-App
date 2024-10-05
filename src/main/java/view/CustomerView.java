@@ -5,12 +5,18 @@ import java.util.Scanner;
 
 public class CustomerView {
     Scanner inuput=new Scanner(System.in);
-    public void showMenu(ArrayList<String> lst , String headLine){
+
+    /*
+    public int showMenu(ArrayList<String> lst , String headLine){
         System.out.println(headLine +":");
         for(int i=0 ; i<lst.size() ; i++ ){
             System.out.println((i+1)+ ". " + lst.get(i));
         }
     }
+
+     */
+
+
     public int askForInput(String str){
         System.out.println(str);
 

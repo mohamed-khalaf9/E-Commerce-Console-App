@@ -67,14 +67,12 @@ public class ProductService {
                     break;
                 }
             }
-        }
-        else return false;
+        } else return false;
 
         if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
             productId_productObj.get(productId).setPrice(price);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -89,14 +87,12 @@ public class ProductService {
                     break;
                 }
             }
-        }
-        else return false;
+        } else return false;
 
         if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
             productId_productObj.get(productId).setDescreption(description);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -111,18 +107,16 @@ public class ProductService {
                     break;
                 }
             }
-        }
-        else return false;
+        } else return false;
 
         if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
             productId_productObj.get(productId).setStock_quantity(stock);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
-    public boolean removeProduct(String category,int productId){
+    public boolean removeProduct(String category, int productId) {
         boolean isCategoryUpdated = false;
 
         if (category_products.containsKey(category)) {
@@ -135,22 +129,17 @@ public class ProductService {
                 }
             }
         }
-            if(isCategoryUpdated && productId_productObj.containsKey(productId))
-            {
-                productId_productObj.remove(productId);
-                return true;
-            }
-            else
-                return false;
-
-
-        }
-
-
-
-
-
+        if (isCategoryUpdated && productId_productObj.containsKey(productId)) {
+            productId_productObj.remove(productId);
+            return true;
+        } else
+            return false;
+    }
+    public ProductModel getProductById(int productId) {
+        return productId_productObj.get(productId);
+    }
 }
+
 
 
 
