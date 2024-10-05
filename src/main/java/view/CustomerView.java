@@ -5,11 +5,27 @@ import java.util.Scanner;
 
 public class CustomerView {
     Scanner inuput=new Scanner(System.in);
-    public void showMenu(ArrayList<String> lst , String headLine){
-        System.out.println(headLine +":");
-        for(int i=0 ; i<lst.size() ; i++ ){
-            System.out.println((i+1)+ ". " + lst.get(i));
+    public int showMenu(ArrayList<String> lst , String headLine){
+        int option=-1;
+        try {
+            while (true) {
+
+                System.out.println(headLine + ":");
+                for (int i = 0; i < lst.size(); i++) {
+                    System.out.println((i + 1) + ". " + lst.get(i));
+                }
+                option=inuput.nextInt();
+                if(option>lst.size()||option<1)
+                    throw new IllegalArgumentException("Enter a proper number");
+                else
+                    break;
+            }
         }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            showMenu(lst,headLine);
+        }
+        return option;
     }
     public int askForInput(String str){
         System.out.println(str);
