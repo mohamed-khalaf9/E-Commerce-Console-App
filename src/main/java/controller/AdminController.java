@@ -138,6 +138,14 @@ public class AdminController extends BaseController {
     private void viewOrders(){
         OrderService orderService = OrderService.getInstance();
         ArrayList<OrderModel> orders = orderService.getAllOrders();
+        if(orders.size()<=0)
+        {
+            view.showMessage("no orders to view");
+            return ;
+
+        }
+
+
 
         ArrayList<String> toBeDisplayed = new ArrayList<>();
 
