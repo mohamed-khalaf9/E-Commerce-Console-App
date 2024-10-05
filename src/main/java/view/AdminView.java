@@ -99,15 +99,13 @@ public class AdminView {
             {
                 System.out.println(message);
                 ret = input.next().charAt(0);
-                if(ret!='Y' || ret!='N')
+                if(ret=='Y' || ret=='N')
+                    break;
+                else
                 {
                     System.out.println("Invalid input, try again .....");
                     continue;
-
                 }
-
-                else
-                    break;
             }
 
         }catch(InputMismatchException e)
