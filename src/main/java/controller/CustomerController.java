@@ -26,8 +26,8 @@ public class CustomerController extends BaseController {
         menu.add("Logout");
         while(true)
         {
-              view.showMenu(menu,"Please select an option");
-              int option=view.askForInput("Choose a number(1-4)");
+             int option =view.showMenu(menu,"Please select an option");
+              
               switch (option) {
                   case 1:
                       BrowseProducts();
