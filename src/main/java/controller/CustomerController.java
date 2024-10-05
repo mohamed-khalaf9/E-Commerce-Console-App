@@ -23,7 +23,9 @@ public class CustomerController extends BaseController {
 
         }
 
+
     }
+    /*
     private void BrowseProducts(){
         try{
             while(true){
@@ -66,7 +68,9 @@ public class CustomerController extends BaseController {
             BrowseProducts();
         }
     }
+    */
 
+    /*
     private void addToCart (String curCategory){
         int[]itemInfo=view.getCartItemInfo();
         int number=itemInfo[0];
@@ -81,5 +85,6 @@ public class CustomerController extends BaseController {
           addToCart(curCategory);
       }
     }
+    */
 
 }

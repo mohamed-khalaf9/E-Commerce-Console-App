@@ -19,6 +19,7 @@ public class CustomerService {
         return ProductService.getInstance().getProductsOfCategory(category);
 
     }
+    /*
     public boolean addToCart (ProductModel product , int quantity){
         try {
 
@@ -39,4 +40,5 @@ public class CustomerService {
             return false;
         }
     }
+    */
 }
