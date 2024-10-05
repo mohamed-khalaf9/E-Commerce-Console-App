@@ -91,6 +91,33 @@ public class AdminView {
         System.out.println(message);
     }
 
+    public char confirmationMessage(String message){
+        char ret = 0;
+        Scanner input = new Scanner(System.in);
+        try{
+            while(true)
+            {
+                System.out.println(message);
+                ret = input.next().charAt(0);
+                if(ret!='Y' || ret!='N')
+                {
+                    System.out.println("Invalid input, try again .....");
+                    continue;
+
+                }
+
+                else
+                    break;
+            }
+
+        }catch(InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+        }
+
+        return ret;
+    }
+
 
 
 }
