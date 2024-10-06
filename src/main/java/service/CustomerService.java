@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public class CustomerService {
     private CustomerModel curCustomer;
 
+
     public CustomerService(CustomerModel curCustomer) {
 
         this.curCustomer = curCustomer;
+
     }
 
     public ProductModel[] BrowseProducts (String category){
@@ -25,11 +27,11 @@ public class CustomerService {
             else {
                 CartItemModel item = new CartItemModel(product, quantity);
 
-                if (CartService.getInstance().isExist(item))
+                if (curCustomer.getCustomerCart().isExist(item))
                    throw new IllegalArgumentException("this item is already exists");
 
                  else{
-                    CartService.getInstance().addItem(item);
+                   curCustomer.getCustomerCart().addItem(item);
                       return true;
                  }
             }

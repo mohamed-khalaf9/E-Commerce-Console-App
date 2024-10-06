@@ -7,18 +7,21 @@ import java.util.ArrayList;
 public class CartService {
     private ArrayList<CartItemModel> cartItems;
     double totalPrice;
-    private static CartService instance;
+    //private static CartService instance;
 
-    private CartService(){
+    /*private CartService(){
+        cartItems=new ArrayList<>();
+    }*/
+    public CartService (){
         cartItems=new ArrayList<>();
     }
 
-    public static CartService getInstance(){
+    /*public static CartService getInstance(){
         if(instance==null){
             instance=new CartService();
         }
         return instance;
-    }
+    }*/
     public ArrayList<CartItemModel> getCartItems(){
         return cartItems;
     }

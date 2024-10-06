@@ -39,8 +39,8 @@ public class CustomerController extends BaseController {
                       //viewOrderHistory();
                       break;
                   case 4:
-                      System.exit(0);
-                      break;
+                      return;
+                     // break;
               }
         }
 

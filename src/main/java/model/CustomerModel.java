@@ -7,14 +7,16 @@ import java.util.Map;
 
 public class CustomerModel extends UserModel{
    // private CartModel customerCart;
-
+      private CartService service;
     private Map<Integer ,OrderModel> customerOrders;
 
     public CustomerModel(String name,String email,String password ,Role role) {
         super(name,email,password,role);
         customerOrders = new HashMap<>();
         //customerCart = new CartModel();
-           CartService.getInstance();
+           //CartService.getInstance();
+        service=new CartService();
+
     }
 
 
@@ -22,9 +24,9 @@ public class CustomerModel extends UserModel{
         customerCart = _customerCart;
     }*/
 
-   /* public CartModel getCustomerCart() {
-        return customerCart;
-    }*/
+    public CartService getCustomerCart() {
+        return service;
+    }
 
     public void setCustomerOrders(OrderModel order) {
          customerOrders.put(OrderModel.getId(),order);
