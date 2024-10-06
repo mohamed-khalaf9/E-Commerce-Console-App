@@ -52,6 +52,7 @@ public class CustomerView {
            return false;
         }
         else {
+            System.out.println(headLine);
             for (int i = 0; i < lst.size(); i++) {
                 System.out.println((i + 1) + ". " + lst.get(i));
             }
