@@ -9,6 +9,7 @@ public class CustomerService {
     private CustomerModel curCustomer;
 
     public CustomerService(CustomerModel curCustomer) {
+
         this.curCustomer = curCustomer;
     }
 
@@ -18,21 +19,19 @@ public class CustomerService {
     }
     public boolean addToCart (ProductModel product , int quantity){
         try {
-
-
-            if (quantity <= product.getStock_quantity()) {
-                CartItemModel item = new CartItemModel(product, quantity);
-                if(curCustomer.getCustomerCart()==null){
-                CartModel cart =new CartModel();
-                    cart.setCartItems(item);
-                    curCustomer.setCustomerCart(cart);
-                 }
-                else {
-                    curCustomer.getCustomerCart().setCartItems(item);
-                }
-                return true;
-            } else {
+           if(quantity>product.getStock_quantity()) {
                 throw new IllegalArgumentException("this quantity is greater than stock amount");
+            }
+            else {
+                CartItemModel item = new CartItemModel(product, quantity);
+
+                if (CartService.getInstance().isExist(item))
+                   throw new IllegalArgumentException("this item is already exists");
+
+                 else{
+                    CartService.getInstance().addItem(item);
+                      return true;
+                 }
             }
 
         }
@@ -41,4 +40,8 @@ public class CustomerService {
             return false;
         }
     }
-}
+
+
+
+    }
+
