@@ -56,8 +56,7 @@ public class ProductService {
         }
     }
 
-    public boolean updateProductPrice(String category, ProductModel productToBeUpdated, double price) {
-        int productId = productToBeUpdated.getId();
+    public boolean updateProductPrice(String category, int productId, double price) {
         boolean isCategoryUpdated = false;
         if (category_products.containsKey(category)) {
             ArrayList<ProductModel> productsInCategory = category_products.get(category);
@@ -68,19 +67,16 @@ public class ProductService {
                     break;
                 }
             }
-        }
-        else return false;
+        } else return false;
 
         if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
             productId_productObj.get(productId).setPrice(price);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
-    public boolean updateProductDescription(String category, ProductModel productToBeUpdated, String description) {
-        int productId = productToBeUpdated.getId();
+    public boolean updateProductDescription(String category, int productId, String description) {
         boolean isCategoryUpdated = false;
         if (category_products.containsKey(category)) {
             ArrayList<ProductModel> productsInCategory = category_products.get(category);
@@ -91,19 +87,16 @@ public class ProductService {
                     break;
                 }
             }
-        }
-        else return false;
+        } else return false;
 
         if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
             productId_productObj.get(productId).setDescreption(description);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
-    public boolean updateProductStock(String category, ProductModel productToBeUpdated, int stock) {
-        int productId = productToBeUpdated.getId();
+    public boolean updateProductStock(String category, int productId, int stock) {
         boolean isCategoryUpdated = false;
         if (category_products.containsKey(category)) {
             ArrayList<ProductModel> productsInCategory = category_products.get(category);
@@ -114,21 +107,39 @@ public class ProductService {
                     break;
                 }
             }
-        }
-        else return false;
+        } else return false;
 
         if (productId_productObj.containsKey(productId) && isCategoryUpdated) {
             productId_productObj.get(productId).setStock_quantity(stock);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
+    public boolean removeProduct(String category, int productId) {
+        boolean isCategoryUpdated = false;
 
-
-
+        if (category_products.containsKey(category)) {
+            ArrayList<ProductModel> productsInCategory = category_products.get(category);
+            for (ProductModel product : productsInCategory) {
+                if (product.getId() == productId) {
+                    category_products.get(category).remove(product);
+                    isCategoryUpdated = true;
+                    break;
+                }
+            }
+        }
+        if (isCategoryUpdated && productId_productObj.containsKey(productId)) {
+            productId_productObj.remove(productId);
+            return true;
+        } else
+            return false;
+    }
+    public ProductModel getProductById(int productId) {
+        return productId_productObj.get(productId);
+    }
 }
+
 
 
 

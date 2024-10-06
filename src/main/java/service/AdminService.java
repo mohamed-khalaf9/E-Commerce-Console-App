@@ -15,17 +15,23 @@ public class AdminService {
         return productService.addProduct(name, price, description, quantity, category);
     }
 
-    public boolean updateProductPrice(String category, ProductModel productToBeUpdated, double price){
+    public boolean updateProductPrice(String category, int productId, double price){
         ProductService productService = ProductService.getInstance();
-        return productService.updateProductPrice(category, productToBeUpdated,price);
+        return productService.updateProductPrice(category, productId,price);
     }
-    public boolean updateProductDescription(String category, ProductModel productToBeUpdated, String description){
+    public boolean updateProductDescription(String category,int productId, String description){
         ProductService productService = ProductService.getInstance();
-        return productService.updateProductDescription(category, productToBeUpdated,description);
+        return productService.updateProductDescription(category, productId,description);
     }
-    public boolean updateProductStock(String category, ProductModel productToBeUpdated, int stock){
+    public boolean updateProductStock(String category,int productId, int stock){
         ProductService productService = ProductService.getInstance();
-        return productService.updateProductStock(category, productToBeUpdated,stock);
+        return productService.updateProductStock(category,productId,stock);
+    }
+
+    public boolean removeProduct(String category,int productId)
+    {
+        ProductService productService = ProductService.getInstance();
+        return productService.removeProduct(category,productId);
     }
 
 

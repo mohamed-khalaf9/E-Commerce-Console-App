@@ -29,7 +29,7 @@ public class CustomerModel extends UserModel{
     }
 
     public void setCustomerOrders(OrderModel order) {
-         customerOrders.put(OrderModel.getId(),order);
+         customerOrders.put(order.getId(),order);
     }
 
    // public HashMap<Integer, OrderModel> getCustomerOrders() {

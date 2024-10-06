@@ -19,31 +19,4 @@ public class CustomerService {
         return ProductService.getInstance().getProductsOfCategory(category);
 
     }
-    public boolean addToCart (ProductModel product , int quantity){
-        try {
-           if(quantity>product.getStock_quantity()) {
-                throw new IllegalArgumentException("this quantity is greater than stock amount");
-            }
-            else {
-                CartItemModel item = new CartItemModel(product, quantity);
-
-                if (curCustomer.getCustomerCart().isExist(item))
-                   throw new IllegalArgumentException("this item is already exists");
-
-                 else{
-                   curCustomer.getCustomerCart().addItem(item);
-                      return true;
-                 }
-            }
-
-        }
-        catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-
-
-
-    }
-
+   

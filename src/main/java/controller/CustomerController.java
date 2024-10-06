@@ -12,20 +12,21 @@ public class CustomerController extends BaseController {
     private CustomerView view;
     private CustomerService service;
 
-    public CustomerController( CustomerService service) {
+    public CustomerController(CustomerService service) {
         this.service = service;
-        view=new CustomerView();
+        view = new CustomerView();
     }
 
-    public void run(){
+    public void run() {
+
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> menu= new ArrayList<>();
+        ArrayList<String> menu = new ArrayList<>();
         menu.add("Browse products");
         menu.add("View cart");
         menu.add("View order history");
         menu.add("Logout");
-        while(true)
-        {
+        while (true) {
+          
              int option =view.showMenu(menu,"Please select an option");
               
               switch (option) {
@@ -39,6 +40,7 @@ public class CustomerController extends BaseController {
                       //viewOrderHistory();
                       break;
                   case 4:
+
                       return;
                      // break;
               }
@@ -49,6 +51,8 @@ public class CustomerController extends BaseController {
         while (true) {
             ArrayList<String> lst = ProductService.getInstance().getCategories();
             int option = view.showMenu(lst, "Available Categories ,Select category");
+
+
 
 
             String category = lst.get(option - 1);
@@ -84,6 +88,11 @@ public class CustomerController extends BaseController {
         }
     }
 
+ 
+
+
+
+    
     private void addToCart (String curCategory){
         int[]itemInfo=view.getCartItemInfo();
         int number=itemInfo[0];

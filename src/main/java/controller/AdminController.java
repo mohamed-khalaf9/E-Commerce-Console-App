@@ -1,7 +1,10 @@
 package controller;
 
+import model.CartItemModel;
+import model.OrderModel;
 import model.ProductModel;
 import service.AdminService;
+import service.OrderService;
 import service.ProductService;
 import view.AdminView;
 
@@ -27,29 +30,15 @@ public class AdminController extends BaseController {
     }
     private void updateProduct(){
         String category ="" ;
-        ProductModel productToBeUpdated;
-        int toBeUpdated ;
+        int productId = -1;
+        int toBeUpdated = -1;
 
+        category = displayCategories();
+        if(category=="") return;
 
-        ProductService productService = ProductService.getInstance();
-        ArrayList<String> categories = productService.getCategories();
-        if(categories.size()>0){
-            int choice = view.showMenu(categories,"Available Categories , Select One: ");
-            category = categories.get(--choice);
-        }
-        else{
-            view.showMessage("No categories found");
-            return;
-        }
+        productId = displayProductsOfCategory(category);
+        if(productId==-1) return;
 
-
-        ArrayList<String> productsToBedisplayed = new ArrayList<>();
-        ProductModel[] productsOfCategory = productService.getProductsOfCategory(category);
-        for(ProductModel product : productsOfCategory){
-            productsToBedisplayed.add(product.getName()+" - "+product.getPrice()+" - stock: "+product.getStock_quantity());
-        }
-        int productNumber = view.showMenu(productsToBedisplayed,"Avaliable Products in "+ category+ ", Plz Select Product Number: ");
-        productToBeUpdated = productsOfCategory[productNumber-1];
 
         ArrayList<String> menu = new ArrayList<>();
         menu.add("Price");
@@ -61,39 +50,149 @@ public class AdminController extends BaseController {
             case 1:
                 double price = view.askForDoubleInput("Enter the new Price: ");
 
-                if( service.updateProductPrice(category,productToBeUpdated,price))
-                    view.showMessage("Product "+productToBeUpdated.getName()+" has been updated successfully!");
+                if( service.updateProductPrice(category,productId,price))
+                    view.showMessage("Product has been updated successfully!");
                 else
                     view.showMessage("failed to update product , try again .... ");
                 break;
             case 2:
 
                 String description = view.askForStringInput("Enter the new Description: ");
-                if(service.updateProductDescription(category,productToBeUpdated,description))
-                    view.showMessage("Product "+productToBeUpdated.getName()+" has been updated successfully!");
+                if(service.updateProductDescription(category,productId,description))
+                    view.showMessage("Product has been updated successfully!");
                 else
                     view.showMessage("failed to update product , try again .... ");
                 break;
             case 3:
                 int stock = view.askForIntInput("Enter the new Stock: ");
-                if(service.updateProductStock(category,productToBeUpdated,stock))
-                    view.showMessage("Product "+productToBeUpdated.getName()+" has been updated successfully!");
+                if(service.updateProductStock(category,productId,stock))
+                    view.showMessage("Product has been updated successfully!");
                 else
                     view.showMessage("failed to update product , try again .... ");
                 break;
         }
 
-
-
-
     }
+
+    private String displayCategories(){
+        String category;
+        ProductService productService = ProductService.getInstance();
+        ArrayList<String> categories = productService.getCategories();
+        if(categories.size()>0){
+            int choice = view.showMenu(categories,"Available Categories , Select One: ");
+            category = categories.get(--choice);
+            return category;
+        }
+        else{
+            view.showMessage("No categories found");
+            return "";
+        }
+    }
+
+    private int displayProductsOfCategory(String category) {
+        int productId = -1;
+        ProductService productService = ProductService.getInstance();
+
+        ArrayList<String> productsToBeDisplayed = new ArrayList<>();
+        ProductModel[] productsOfCategory = productService.getProductsOfCategory(category);
+
+        if (productsOfCategory.length <= 0) {
+            view.showMessage("No products found");
+            return -1;
+        } else {
+            for (ProductModel product : productsOfCategory) {
+                productsToBeDisplayed.add(product.getName() + " - " + product.getPrice() + " - stock: " + product.getStock_quantity());
+            }
+
+            int productNumber = view.showMenu(productsToBeDisplayed, "Available Products in " + category + ", Please Select Product Number: ");
+
+            ProductModel productToBeUpdated = productsOfCategory[productNumber - 1];
+            productId = productToBeUpdated.getId();
+            return productId;
+        }
+    }
+
+
     private void removeProduct(){
+        String category = "";
+        int productId = 0;
+
+        category = displayCategories();
+        if(category=="") return;
+
+        productId = displayProductsOfCategory(category);
+        if(productId==-1) return;
+
+        if(view.confirmationMessage("Are you sure you want to remove iPhone 15? (Y/N):") == 'Y') {
+           if(service.removeProduct(category, productId))
+           {
+               view.showMessage("Product "+productId+" has been removed successfully!");
+           }
+           else
+               view.showMessage("failed to remove product , try again .... ");
+        }
+        else
+            return;
 
     }
     private void viewOrders(){
+        OrderService orderService = OrderService.getInstance();
+        ArrayList<OrderModel> orders = orderService.getAllOrders();
+        if(orders.size()<=0)
+        {
+            view.showMessage("no orders to view");
+            return ;
+
+        }
+
+
+
+        ArrayList<String> toBeDisplayed = new ArrayList<>();
+
+        for (OrderModel order : orders) {
+            StringBuilder orderDetails = new StringBuilder(); // Using StringBuilder for efficient string concatenation
+
+            orderDetails.append("Order ID: ").append(order.getId()).append("\n");
+
+
+            orderDetails.append("Customer Email: ").append(order.getCustomerEmail()).append("\n");
+
+
+            orderDetails.append("Products: ");
+            for (CartItemModel cartItem : order.getOrderProducts()) {
+                orderDetails.append(cartItem.getItem().getName())
+                        .append(" - Quantity: ").append(cartItem.getQuantity())
+                        .append("\n");
+            }
+
+            orderDetails.append("Total Price: $").append(String.format("%.2f", order.getTotalPrice())).append("\n");
+            orderDetails.append("Payment Method: ").append(order.getPaymentMethod()).append("\n");
+            toBeDisplayed.add(orderDetails.toString());
+
+        }
+
+        view.showList(toBeDisplayed);
+
 
     }
     private void manageInventory(){
+        String category = "";
+        int productId = -1;
+        int quantity = -1;
+        ProductService productService = ProductService.getInstance();
+
+
+        category = displayCategories();
+        if(category=="") return;
+        productId = displayProductsOfCategory(category);
+        if(productId==-1) return;
+
+        ProductModel product = productService.getProductById(productId);
+        quantity = view.askForIntInput("Enter the new Stock Quantity: ");
+        if(service.updateProductStock(category,productId,quantity))
+            view.showMessage("Stock updated successfully! "+product.getName()+" now has "+ quantity+" units available.");
+        else
+            view.showMessage("failed to update product , try again .... ");
 
     }
 

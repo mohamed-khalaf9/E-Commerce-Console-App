@@ -91,6 +91,38 @@ public class AdminView {
         System.out.println(message);
     }
 
+    public char confirmationMessage(String message){
+        char ret = 0;
+        Scanner input = new Scanner(System.in);
+        try{
+            while(true)
+            {
+                System.out.println(message);
+                ret = input.next().charAt(0);
+                if(ret=='Y' || ret=='N')
+                    break;
+                else
+                {
+                    System.out.println("Invalid input, try again .....");
+                    continue;
+                }
+            }
+
+        }catch(InputMismatchException e)
+        {
+            System.out.println("Invalid input, try again .....");
+        }
+
+        return ret;
+    }
+
+    public void showList(ArrayList<String> listOfItems)
+    {
+        for (int i = 0; i < listOfItems.size(); i++)
+            System.out.println((i+1)+" "+listOfItems.get(i));
+    }
+
+
 
 
 }

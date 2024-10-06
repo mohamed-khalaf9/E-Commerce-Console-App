@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class CustomerView {
     Scanner inuput=new Scanner(System.in);
+
     public int showMenu(ArrayList<String> lst , String headLine){
         int option=-1;
         try {
@@ -24,9 +25,11 @@ public class CustomerView {
         catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             showMenu(lst,headLine);
-        }
-        return option;
-    }
+
+
+  
+
+
     public int askForInput(String str){
         System.out.println(str);
 
