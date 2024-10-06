@@ -63,4 +63,10 @@ public class ProductModel {
     public int getStock_quantity() {
         return stock_quantity;
     }
+
+    public String TOString(){
+        String info=getName()+" - "+"$"+getPrice()+"\n"+"Description: "+getDescreption()+"\n Stock: "+getStock_quantity();
+        return info;
+    }
+
 }

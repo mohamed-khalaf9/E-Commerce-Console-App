@@ -6,15 +6,28 @@ import java.util.Scanner;
 public class CustomerView {
     Scanner inuput=new Scanner(System.in);
 
-    /*
     public int showMenu(ArrayList<String> lst , String headLine){
-        System.out.println(headLine +":");
-        for(int i=0 ; i<lst.size() ; i++ ){
-            System.out.println((i+1)+ ". " + lst.get(i));
-        }
-    }
+        int option=-1;
+        try {
+            while (true) {
 
-     */
+                System.out.println(headLine + ":");
+                for (int i = 0; i < lst.size(); i++) {
+                    System.out.println((i + 1) + ". " + lst.get(i));
+                }
+                option=inuput.nextInt();
+                if(option>lst.size()||option<1)
+                    throw new IllegalArgumentException("Enter a proper number");
+                else
+                    break;
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            showMenu(lst,headLine);
+
+
+  
 
 
     public int askForInput(String str){
@@ -36,6 +49,18 @@ public class CustomerView {
     }
     public void informMessage(String message){
         System.out.println(message);
+    }
+    public boolean showCategoryProducts(ArrayList<String> lst,String headLine){
+        if(lst.size()==0) {
+           return false;
+        }
+        else {
+            System.out.println(headLine);
+            for (int i = 0; i < lst.size(); i++) {
+                System.out.println((i + 1) + ". " + lst.get(i));
+            }
+            return true;
+        }
     }
 
 
