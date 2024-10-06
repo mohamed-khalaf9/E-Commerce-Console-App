@@ -33,7 +33,7 @@ public class CustomerController extends BaseController {
                       BrowseProducts();
                       break;
                   case 2:
-                      //viewCart();
+                     //viewCart();
                       break;
                   case 3:
                       //viewOrderHistory();
@@ -45,60 +45,64 @@ public class CustomerController extends BaseController {
         }
 
     }
-    private void BrowseProducts(){
-        try{
-            while(true){
-                ArrayList<String> lst =ProductService.getInstance().getCategories();
-                int option=view.showMenu(lst,"Available Categories");
+    private void BrowseProducts() {
+        while (true) {
+            ArrayList<String> lst = ProductService.getInstance().getCategories();
+            int option = view.showMenu(lst, "Available Categories ,Select category");
 
 
-                    String category = lst.get(option-1);
-                    ArrayList<String> products= new ArrayList<String>();
-                    for(int i=0;i<service.BrowseProducts(category).length;i++){
-                        products.add(service.BrowseProducts(category)[i].ToString());
+            String category = lst.get(option - 1);
+            ArrayList<String> products = new ArrayList<String>();
+            for (int i = 0; i < service.BrowseProducts(category).length; i++) {
+                products.add(service.BrowseProducts(category)[i].TOString());
+            }
+                String str = "Diplaying Products in " + category;
+                boolean found = view.showCategoryProducts(products, str);
+                if (found) {
+                    ArrayList<String> options = new ArrayList<String>();
+                    options.add("Add to cart");
+                    options.add("Back to categories");
+                    options.add("Back to menu");
+                    int op = view.showMenu(options, "Pleae select an option : ");
 
-                    String str= "Available Products in "+category;
-                    view.showMenu(products, str);
-                    ArrayList<String>options =new ArrayList<String>();
-                    options.add("1. Add to cart");
-                    options.add("2. Back to categories");
-                    options.add("3. Back to menu");
-                    view.showMenu(options,"Choose : ");
-                    int op=view.askForInput("Select an option");
-                        if(op==1){
-                          addToCart(category);
-                        }
-
-                        else if(op==2)
-                            continue;
-                            else if(op==3)
-                                System.exit(0);
-                            else
-                            throw new IllegalArgumentException("choose a proper number");
-
+                    if (op == 1) {
+                        addToCart(category);
+                    }
+                    else if (op == 2)
+                        continue;
+                    else if (op == 3)
+                        return;
 
                 }
-            }
-        }
-        catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            BrowseProducts();
+                else {
+                    System.out.println("No products found in this category");
+                    BrowseProducts();
+                }
+
+
+
         }
     }
 
     private void addToCart (String curCategory){
         int[]itemInfo=view.getCartItemInfo();
         int number=itemInfo[0];
-        if(number>0&&number<=service.BrowseProducts(curCategory).length);
-      boolean succeedded = service.addToCart(service.BrowseProducts(curCategory)[number-1],itemInfo[1]);
-      if(succeedded) {
-         String name= service.BrowseProducts(curCategory)[itemInfo[0]-1].getName();
-          view.informMessage(name+" has been added to your cart");
-      }
+        if(number>0&&number<=service.BrowseProducts(curCategory).length) {
+            boolean succeedded = service.addToCart(service.BrowseProducts(curCategory)[number - 1], itemInfo[1]);
+            if (succeedded) {
+                String name = service.BrowseProducts(curCategory)[number - 1].getName();
+                view.informMessage(name + " has been added to your cart");
+            }
+            else {
+                view.informMessage(" process failed");
+                addToCart(curCategory);
+            }
+        }
       else {
-          view.informMessage("Enter valid information: ");
+          view.informMessage("Enter valid number: ");
           addToCart(curCategory);
       }
     }
+
 
 }
