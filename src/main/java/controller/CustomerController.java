@@ -113,5 +113,30 @@ public class CustomerController extends BaseController {
       }
     }
 
+private void viewCart() {
+    ArrayList<String> items = new ArrayList<>();
+    items = service.getCartItemsInfo();
+
+        view.printCartItems(items, "Your cart :");
+
+        ArrayList<String> menu = new ArrayList<>();
+        menu.add("Checkout");
+        menu.add("Modify cart");
+        menu.add("Back to menu");
+
+        int option = view.showMenu(menu, "Please select an option");
+        if (option == 1)
+            checkout();
+        else if (option == 2)
+            modifyCart();
+        else
+            return;
+
+
+
+
+        }
+    }
+
 
 }
