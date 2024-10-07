@@ -42,10 +42,20 @@ public class CustomerService {
         }
     }
      public ArrayList<String> getCartItemsInfo (){
-        ArrayList<String>items =new ArrayList<>();
-         for (int i=0;i<curCustomer.getCustomerCart().getCartItems().size();i++){
-             items.add(curCustomer.getCustomerCart().getCartItems().get(i).ToString());
-         }
+         ArrayList<String> items = new ArrayList<>();
+        try {
+
+            if (curCustomer.getCustomerCart().getCartItems().size() == 0)
+                throw new IllegalArgumentException("No items found to view ");
+
+            for (int i = 0; i < curCustomer.getCustomerCart().getCartItems().size(); i++) {
+                items.add(curCustomer.getCustomerCart().getCartItems().get(i).ToString());
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+
+        }
          return items;
      }
 }
