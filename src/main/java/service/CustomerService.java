@@ -15,8 +15,9 @@ public class CustomerService {
 
     }
 
-    public ProductModel[] BrowseProducts (String category){
+    public ProductModel[] BrowseProducts(String category) {
         return ProductService.getInstance().getProductsOfCategory(category);
 
     }
+}
    
