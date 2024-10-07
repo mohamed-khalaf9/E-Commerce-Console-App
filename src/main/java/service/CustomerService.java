@@ -58,5 +58,16 @@ public class CustomerService {
         }
          return items;
      }
+     public boolean checkout(String paymentMethod){
+        if (paymentMethod=="Pay on delivery")
+            return true;
+        else {
+            boolean ok = handelPaymentMethod(paymentMethod);
+            if (ok)
+                return true;
+            else
+                return false;
+        }
+     }
 }
    
