@@ -114,28 +114,59 @@ public class CustomerController extends BaseController {
     }
 
 private void viewCart() {
-    ArrayList<String> items = new ArrayList<>();
-    items = service.getCartItemsInfo();
+        try {
+            ArrayList<String> items = new ArrayList<>();
+            items = service.getCartItemsInfo();
+            if (items.size() == 0)
+                throw new IllegalArgumentException("Add products first to be able to order them");
+            else {
+                view.printCartItems(items, "Your cart :");
 
-        view.printCartItems(items, "Your cart :");
+                ArrayList<String> menu = new ArrayList<>();
+                menu.add("Checkout");
+                menu.add("Modify cart");
+                menu.add("Back to menu");
 
-        ArrayList<String> menu = new ArrayList<>();
-        menu.add("Checkout");
-        menu.add("Modify cart");
-        menu.add("Back to menu");
-
-        int option = view.showMenu(menu, "Please select an option");
-        if (option == 1)
-            checkout();
-        else if (option == 2)
-            modifyCart();
-        else
+                int option = view.showMenu(menu, "Please select an option");
+                switch (option) {
+                    case 1:
+                        checkout(items);
+                        break;
+                    case 2:
+                        modifyCart();
+                        break;
+                    case 3:
+                        return;
+                }
+            }
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return;
-
-
-
+        }
 
         }
+        private void checkout(ArrayList<String> cartItems){
+        view.printCartItems(cartItems,"You are about to order the following: ");
+        char ch =view.confirmationMessage();
+        if(ch=='y'||ch=='Y'){
+            ArrayList<String> menu =new ArrayList<>();
+            menu.add("Debit card");
+            menu.add("credit card");
+            menu.add("Pay on delivery");
+
+            int option =view.showMenu(menu,"Select a payment method");
+             String method=menu.get(option-1);
+             boolean succedded = service.checkout();
+
+             if(succedded)
+                 view.informMessage("Payment successfull! your order has been placed");
+             else {
+                 view.informMessage("payment failed");
+                 return;
+             }
+        }
+
     }
 
 
