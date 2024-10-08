@@ -41,4 +41,12 @@ public class CartService {
             System.out.println(cartItems.get(i).getQuantity());
         }
     }
+    public void calculateTotalPrice(){
+        for(int i=0;i<cartItems.size();i++) {
+            totalPrice+=cartItems.get(i).getItem().getPrice();
+        }
+        }
+        public double getTotalPrice(){
+        return totalPrice;
+    }
 }
