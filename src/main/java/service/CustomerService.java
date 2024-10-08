@@ -113,6 +113,9 @@ public class CustomerService {
              return false;
          }
      }
+     public void removeProduct(int productNumber){
+        curCustomer.getCustomerCart().getCartItems().remove(productNumber);
+     }
 
 
 }
