@@ -47,8 +47,8 @@ public class CartService {
             total+=cartItems.get(i).getItem().getPrice();
         }
         return total;
-        }
-        public double getTotalPrice(){
+    }
+    public double getTotalPrice(){
         totalPrice=calculateTotalPrice();
         return totalPrice;
     }
@@ -57,6 +57,6 @@ public class CartService {
             int newStock=  cartItems.get(i).getItem().getStock_quantity()-cartItems.get(i).getQuantity();
             cartItems.get(i).getItem().setStock_quantity(newStock);
         }
-        }
     }
+}
 

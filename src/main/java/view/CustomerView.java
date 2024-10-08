@@ -28,13 +28,13 @@ public class CustomerView {
         }
         return option;
     }
-  
+
 
 
     public int askForInput(String str){
         System.out.println(str);
 
-       int option= inuput.nextInt();
+        int option= inuput.nextInt();
         return option;
     }
     public int[] getCartItemInfo(){
@@ -48,12 +48,25 @@ public class CustomerView {
         arr[1]=quantity;
         return arr;
     }
+    public void printCartItems(ArrayList<String> lst ,String headLine){
+        System.out.println(headLine);
+        for(int i=0;i<lst.size();i++){
+            System.out.println((i+1)+". "+lst.get(i));
+        }
+
+    }
     public void informMessage(String message){
         System.out.println(message);
     }
+    public char confirmationMessage(){
+        Scanner input =new Scanner(System.in);
+        System.out.print("Confirm your order (Y/N) : ");
+        char ch=input.next().charAt(0);
+        return ch;
+    }
     public boolean showCategoryProducts(ArrayList<String> lst,String headLine){
         if(lst.size()==0) {
-           return false;
+            return false;
         }
         else {
             System.out.println(headLine);
@@ -63,7 +76,18 @@ public class CustomerView {
             return true;
         }
     }
-
+    public void printTotalPrice(String formatedPrice){
+        System.out.println(formatedPrice);
 
     }
+   /* public void printOrders(ArrayList<String>lst,String headLine){
+        System.out.println(headLine);
+        for (int i = 0; i < lst.size(); i++) {
+            System.out.println((i + 1) + ". " + lst.get(i));
+        }
+
+    }*/
+
+
+}
 

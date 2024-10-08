@@ -3,7 +3,7 @@ package model;
 public class CartItemModel {
     private ProductModel item;
     private  int quantity;
-   public CartItemModel(ProductModel product , int quantity){
+    public CartItemModel(ProductModel product , int quantity){
         setItem(product);
         setQuantity(quantity);
     }
@@ -16,10 +16,10 @@ public class CartItemModel {
         return item;
     }
     public boolean Equals (ProductModel item){
-       if(this.item==item)
-           return true;
-       else
-           return false;
+        if(this.item==item)
+            return true;
+        else
+            return false;
     }
 
     public void setQuantity(int quantity) {
@@ -30,7 +30,7 @@ public class CartItemModel {
         return quantity;
     }
     public String ToString(){
-       String info= getItem().getName() +" - "+"Quantity: "+getQuantity()+" - "+" $"+getItem().getPrice();
-       return info;
+        String info= getItem().getName() +" - "+"Quantity: "+getQuantity()+" - "+" $"+getItem().getPrice();
+        return info;
     }
 }

@@ -37,7 +37,7 @@ public class CustomerController extends BaseController {
                     viewCart();
                     break;
                 case 3:
-                   // viewOrderHistory();
+                    // viewOrderHistory();
                     break;
                 case 4:
 
@@ -199,6 +199,5 @@ public class CustomerController extends BaseController {
     }
 
 }
-
 
 

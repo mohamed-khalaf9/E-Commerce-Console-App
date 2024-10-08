@@ -25,9 +25,8 @@ public class OrderService {
     }
 
     public ArrayList<OrderModel> getAllOrders() {
-       ArrayList<OrderModel> orders = new ArrayList<>();
-       orders.addAll(orderId_orderObj.values());
-       return orders;
+        ArrayList<OrderModel> orders = new ArrayList<>();
+        orders.addAll(orderId_orderObj.values());
+        return orders;
     }
 }
-

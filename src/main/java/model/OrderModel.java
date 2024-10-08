@@ -61,12 +61,12 @@ public class OrderModel {
     }
 
     public String ToString() {
-      ArrayList<String>  products=new ArrayList<>();
-      for (int i=0;i<orderProducts.size();i++){
-          products.add(orderProducts.get(i).ToString());
-      }
-      String productStr=String.join("\n",products);
-     String str="Order ID: "+getId()+"\n Products:"+productStr+"Total price: $"+getTotalPrice()+"\nPayment method: "+getPaymentMethod();
-     return str;
+        ArrayList<String>  products=new ArrayList<>();
+        for (int i=0;i<orderProducts.size();i++){
+            products.add(orderProducts.get(i).ToString());
+        }
+        String productStr=String.join("\n",products);
+        String str="Order ID: "+getId()+"\n Products:"+productStr+"Total price: $"+getTotalPrice()+"\nPayment method: "+getPaymentMethod();
+        return str;
     }
 }
