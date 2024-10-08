@@ -49,4 +49,11 @@ public class CartService {
         public double getTotalPrice(){
         return totalPrice;
     }
-}
+    public void reduceStockQuantity(){
+        for(int i=0;i<cartItems.size();i++) {
+            int newStock=  cartItems.get(i).getItem().getStock_quantity()-cartItems.get(i).getQuantity();
+            cartItems.get(i).getItem().setStock_quantity(newStock);
+        }
+        }
+    }
+
