@@ -117,7 +117,14 @@ public class CustomerService {
         curCustomer.getCustomerCart().getCartItems().remove(productNumber-1);
     }
 
+    public ArrayList<String> getOrders(){
+        ArrayList<String>orders=new ArrayList<>();
+        for(OrderModel order:curCustomer.getCustomerOrders().values()){
+            orders.add(order.ToString());
+        }
 
+        return orders;
+    }
 
 }
 
