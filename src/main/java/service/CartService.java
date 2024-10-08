@@ -41,12 +41,15 @@ public class CartService {
             System.out.println(cartItems.get(i).getQuantity());
         }
     }
-    public void calculateTotalPrice(){
+    public double calculateTotalPrice(){
+        double total=0;
         for(int i=0;i<cartItems.size();i++) {
-            totalPrice+=cartItems.get(i).getItem().getPrice();
+            total+=cartItems.get(i).getItem().getPrice();
         }
+        return total;
         }
         public double getTotalPrice(){
+        totalPrice=calculateTotalPrice();
         return totalPrice;
     }
     public void reduceStockQuantity(){
