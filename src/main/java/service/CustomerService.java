@@ -104,7 +104,7 @@ public class CustomerService {
              if (newQuantity > curCustomer.getCustomerCart().getCartItems().get(productNumber).getItem().getStock_quantity())
                  throw new IllegalArgumentException("Quantity exceeds the stock");
              else {
-                 curCustomer.getCustomerCart().getCartItems().get(productNumber).setQuantity(newQuantity);
+                 curCustomer.getCustomerCart().getCartItems().get(productNumber-1).setQuantity(newQuantity);
                  return true;
              }
          }
@@ -116,13 +116,7 @@ public class CustomerService {
      public void removeProduct(int productNumber){
         curCustomer.getCustomerCart().getCartItems().remove(productNumber);
      }
-     public ArrayList<String> getOrders(){
-        ArrayList<String>orders=new ArrayList<>();
-        for(OrderModel order:curCustomer.getCustomerOrders()){
-            orders.add(order.ToString());
-        }
-        return orders;
-     }
+
 
 
 }
