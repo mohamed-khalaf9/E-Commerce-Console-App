@@ -94,5 +94,8 @@ public class CustomerService {
          else
              return false;
      }
+     public CartItemModel getCarttemByNumber(int productNumber){
+        curCustomer.getCustomerCart().getCartItems().get(productNumber);
+     }
 }
    
