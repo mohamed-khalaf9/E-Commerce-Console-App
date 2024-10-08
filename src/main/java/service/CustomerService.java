@@ -60,6 +60,13 @@ public class CustomerService {
         }
          return items;
      }
+
+    public String printTotalPrice(){
+        double price=curCustomer.getCustomerCart().getTotalPrice();
+        String str="Total price:  $"+price;
+        return str;
+
+    }
      public boolean checkout(String paymentMethod){
         if (paymentMethod=="Pay on delivery")
             return true;
@@ -77,12 +84,13 @@ public class CustomerService {
          boolean done= method.readData();
 
          if(done){
-             method.processPayment(double amount);
+             curCustomer.getCustomerCart().calculateTotalPrice();
+             method.processPayment(curCustomer.getCustomerCart().getTotalPrice());
              OrderModel order =new OrderModel(curCustomer.getEmail(),curCustomer.getCustomerCart().getCartItems(),curCustomer.getCustomerCart().getTotalPrice(),methodOfPayment);
              curCustomer.setCustomerOrders(order);
              OrderService.getInstance().setOrder(order);
              curCustomer.getCustomerCart().reduceStockQuantity();
-
+              return true;
          }
          else
              return false;
