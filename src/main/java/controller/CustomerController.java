@@ -1,5 +1,6 @@
 package controller;
 
+import model.OrderModel;
 import service.CustomerService;
 import service.ProductService;
 import view.CustomerView;
@@ -173,7 +174,7 @@ public class CustomerController extends BaseController {
             if (productNumber > lst.size() || productNumber < 1)
                 throw new IllegalArgumentException("Enter a valid number");
             else {
-                String productName = service.getCarttemByNumber(productNumber).getItem().getName();
+                String productName = service.getCarttemByNumber(productNumber-1).getItem().getName();
                 ArrayList<String> menu = new ArrayList<>();
                 menu.add("Update Qte Quantity");
                 menu.add("Remove from cart");
@@ -209,6 +210,7 @@ public class CustomerController extends BaseController {
             System.out.println(e.getMessage());
             return;
         }
+
     }
 }
 
