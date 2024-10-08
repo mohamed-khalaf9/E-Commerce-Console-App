@@ -34,7 +34,7 @@ public class CustomerController extends BaseController {
                       BrowseProducts();
                       break;
                   case 2:
-                     //viewCart();
+                     viewCart();
                       break;
                   case 3:
                       //viewOrderHistory();
@@ -121,6 +121,8 @@ private void viewCart() {
                 throw new IllegalArgumentException("Add products first to be able to order them");
             else {
                 view.printCartItems(items, "Your cart :");
+               String str=service.getTotalPrice();
+               view.printTotalPrice(str);
 
                 ArrayList<String> menu = new ArrayList<>();
                 menu.add("Checkout");
@@ -133,7 +135,7 @@ private void viewCart() {
                         checkout(items);
                         break;
                     case 2:
-                        modifyCart();
+                        //modifyCart();
                         break;
                     case 3:
                         return;
@@ -148,6 +150,8 @@ private void viewCart() {
         }
         private void checkout(ArrayList<String> cartItems){
         view.printCartItems(cartItems,"You are about to order the following: ");
+            String str=service.getTotalPrice();
+            view.printTotalPrice(str);
         char ch =view.confirmationMessage();
         if(ch=='y'||ch=='Y'){
             ArrayList<String> menu =new ArrayList<>();
@@ -157,7 +161,7 @@ private void viewCart() {
 
             int option =view.showMenu(menu,"Select a payment method");
              String method=menu.get(option-1);
-             boolean succedded = service.checkout();
+             boolean succedded = service.checkout(method);
 
              if(succedded)
                  view.informMessage("Payment successfull! your order has been placed");
@@ -167,6 +171,42 @@ private void viewCart() {
              }
         }
 
+
+    }
+    private void modifyCart(ArrayList<String> lst) {
+        try {
+
+            view.printCartItems(lst, "Your cart: ");
+            int productNumber = view.askForInput("Select the product number to modify");
+
+            if (productNumber > lst.size() || productNumber < 1)
+                throw new IllegalArgumentException("Enter a valid number");
+            else {
+                String productName=service.getCarttemByNumber(productNumber).getItem().getName();
+                ArrayList<String> menu = new ArrayList<>();
+                menu.add("Update Qte Quantity");
+                menu.add("Remove from cart");
+                int choice = view.showMenu(menu, "Choose an action");
+                if (choice == 1) {
+                    int newQuantity = view.askForInput("Enter the new Quantity");
+                    boolean ok = service.updateProductQuantity( int number, int Quantity);
+                    if (ok)
+                        view.informMessage(productName+" quantity updated to " + newQuantity);
+                    else
+                        view.informMessage("process failed!");
+                } else {
+                    boolean done = service.removeProduct( int number);
+                    if (done)
+                        view.informMessage(productName+" has been removed from your cart");
+                    else
+                        view.informMessage("process failed!");
+                }
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            modifyCart(lst);
+        }
     }
 
 
