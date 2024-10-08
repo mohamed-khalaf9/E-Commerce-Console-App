@@ -61,9 +61,8 @@ public class CustomerService {
          return items;
      }
 
-    public String printTotalPrice(){
-        double price=curCustomer.getCustomerCart().getTotalPrice();
-        String str="Total price:  $"+price;
+    public String getTotalPrice(){
+        String str="Total price:  $"+curCustomer.getCustomerCart().getTotalPrice();
         return str;
 
     }
@@ -84,7 +83,7 @@ public class CustomerService {
          boolean done= method.readData();
 
          if(done){
-             curCustomer.getCustomerCart().calculateTotalPrice();
+             //curCustomer.getCustomerCart().calculateTotalPrice();
              method.processPayment(curCustomer.getCustomerCart().getTotalPrice());
              OrderModel order =new OrderModel(curCustomer.getEmail(),curCustomer.getCustomerCart().getCartItems(),curCustomer.getCustomerCart().getTotalPrice(),methodOfPayment);
              curCustomer.setCustomerOrders(order);
