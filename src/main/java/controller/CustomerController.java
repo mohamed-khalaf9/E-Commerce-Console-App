@@ -37,7 +37,7 @@ public class CustomerController extends BaseController {
                     viewCart();
                     break;
                 case 3:
-                    // viewOrderHistory();
+                    viewOrderHistory();
                     break;
                 case 4:
 
@@ -198,8 +198,17 @@ public class CustomerController extends BaseController {
         }
     }
     private void viewOrderHistory(){
-        ArrayList<String> lst=service.getOrders();
-        view.printOrders(lst,"Your orders: ");
+        try {
+            ArrayList<String> lst = service.getOrders();
+            if(lst.size()==0)
+                throw new IllegalArgumentException("There is not any order to view");
+            else
+            view.printOrders(lst, "Your orders: ");
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return;
+        }
     }
 }
 
