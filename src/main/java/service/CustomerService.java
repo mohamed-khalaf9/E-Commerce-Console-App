@@ -1,6 +1,8 @@
 package service;
 
+import factory.PaymentMethodFactory;
 import model.*;
+import payment.PaymentMethod;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -65,9 +67,25 @@ public class CustomerService {
             boolean ok = handelPaymentMethod(paymentMethod);
             if (ok)
                 return true;
+
             else
                 return false;
         }
+     }
+     private boolean handelPaymentMethod(String methodOfPayment){
+         PaymentMethod method = PaymentMethodFactory.createPaymentMethod(methodOfPayment);
+         boolean done= method.readData();
+
+         if(done){
+             method.processPayment(double amount);
+             OrderModel order =new OrderModel(curCustomer.getEmail(),curCustomer.getCustomerCart().getCartItems(),curCustomer.getCustomerCart().getTotalPrice(),methodOfPayment);
+             curCustomer.setCustomerOrders(order);
+             OrderService.getInstance().setOrder(order);
+             curCustomer.getCustomerCart().reduceStockQuantity();
+
+         }
+         else
+             return false;
      }
 }
    
