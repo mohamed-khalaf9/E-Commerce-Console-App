@@ -20,6 +20,9 @@ public class OrderService {
         }
         return instance;
     }
+    public void setOrder(OrderModel order){
+        orderId_orderObj.put(order.getId(),order);
+    }
 
     public ArrayList<OrderModel> getAllOrders() {
        ArrayList<OrderModel> orders = new ArrayList<>();
