@@ -57,6 +57,12 @@ public class CustomerView {
     public void informMessage(String message){
         System.out.println(message);
     }
+    public char confirmationMessage(){
+        Scanner input =new Scanner(System.in);
+        System.out.print("Confirm your order (Y/N) : ");
+        char ch=input.next().charAt(0);
+        return ch;
+    }
     public boolean showCategoryProducts(ArrayList<String> lst,String headLine){
         if(lst.size()==0) {
            return false;
@@ -68,6 +74,11 @@ public class CustomerView {
             }
             return true;
         }
+    }
+    public void printTotalPrice(double price){
+         String str="Total price:  $"+price;
+         System.out.println(str);
+
     }
 
 
