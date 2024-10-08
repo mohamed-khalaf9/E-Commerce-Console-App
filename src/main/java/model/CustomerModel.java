@@ -32,7 +32,7 @@ public class CustomerModel extends UserModel{
          customerOrders.put(order.getId(),order);
     }
 
-   // public HashMap<Integer, OrderModel> getCustomerOrders() {
-//return customerOrders;
-    //}
+   Map<Integer, OrderModel> getCustomerOrders() {
+      return customerOrders;
+    }
 }
