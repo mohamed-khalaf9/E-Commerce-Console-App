@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OrderModel {
     private int id;
@@ -13,6 +14,7 @@ public class OrderModel {
 
     public OrderModel(String customerEmail, ArrayList<CartItemModel> orderProducts, double totalPrice, String paymentMethod) {
         this.id = idCounter++;
+        orderProducts = new ArrayList<>();
         setCustomerEmail(customerEmail);
         setTotalPrice(totalPrice);
         setPaymentMethod(paymentMethod);
@@ -33,7 +35,7 @@ public class OrderModel {
     }
 
     public void setOrderProducts(ArrayList<CartItemModel> orderProducts) {
-        for(CartItemModel cartItem : orderProducts) {
+        for (CartItemModel cartItem : orderProducts) {
             this.orderProducts.add(cartItem);
         }
     }
@@ -56,5 +58,15 @@ public class OrderModel {
 
     public String getPaymentMethod() {
         return paymentMethod;
+    }
+
+    public String ToString() {
+      ArrayList<String>  products=new ArrayList<>();
+      for (int i=0;i<orderProducts.size();i++){
+          products.add(orderProducts.get(i).ToString());
+      }
+      String productStr=String.join("\n",products);
+     String str="Order ID: "+getId()+"\n Products:"+productStr+"Total price: $"+getTotalPrice()+"\nPayment method: "+getPaymentMethod();
+     return str;
     }
 }

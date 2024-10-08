@@ -41,4 +41,22 @@ public class CartService {
             System.out.println(cartItems.get(i).getQuantity());
         }
     }
-}
+    public double calculateTotalPrice(){
+        double total=0;
+        for(int i=0;i<cartItems.size();i++) {
+            total+=cartItems.get(i).getItem().getPrice();
+        }
+        return total;
+        }
+        public double getTotalPrice(){
+        totalPrice=calculateTotalPrice();
+        return totalPrice;
+    }
+    public void reduceStockQuantity(){
+        for(int i=0;i<cartItems.size();i++) {
+            int newStock=  cartItems.get(i).getItem().getStock_quantity()-cartItems.get(i).getQuantity();
+            cartItems.get(i).getItem().setStock_quantity(newStock);
+        }
+        }
+    }
+
