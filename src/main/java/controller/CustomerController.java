@@ -197,7 +197,10 @@ public class CustomerController extends BaseController {
             modifyCart(lst);
         }
     }
-
+    private void viewOrderHistory(){
+        ArrayList<String> lst=service.getOrders();
+        view.printOrders(lst,"Your orders: ");
+    }
 }
 
 
