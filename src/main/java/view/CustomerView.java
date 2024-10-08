@@ -49,6 +49,7 @@ public class CustomerView {
         return arr;
     }
     public void printCartItems(ArrayList<String> lst ,String headLine){
+        System.out.println(headLine);
         for(int i=0;i<lst.size();i++){
             System.out.println((i+1)+". "+lst.get(i));
         }
