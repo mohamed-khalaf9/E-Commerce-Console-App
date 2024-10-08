@@ -61,6 +61,11 @@ public class CustomerService {
          return items;
      }
 
+    public CartItemModel getCarttemByNumber(int productNumber){
+        return curCustomer.getCustomerCart().getCartItems().get(productNumber);
+
+    }
+
     public String getTotalPrice(){
         String str="Total price:  $"+curCustomer.getCustomerCart().getTotalPrice();
         return str;
@@ -94,8 +99,21 @@ public class CustomerService {
          else
              return false;
      }
-     public CartItemModel getCarttemByNumber(int productNumber){
-        curCustomer.getCustomerCart().getCartItems().get(productNumber);
+     public boolean updateProductQuantity(int productNumber ,int newQuantity ) {
+         try {
+             if (newQuantity > curCustomer.getCustomerCart().getCartItems().get(productNumber).getItem().getStock_quantity())
+                 throw new IllegalArgumentException("Quantity exceeds the stock");
+             else {
+                 curCustomer.getCustomerCart().getCartItems().get(productNumber).setQuantity(newQuantity);
+                 return true;
+             }
+         }
+         catch (IllegalArgumentException e){
+             System.out.println(e.getMessage());
+             return false;
+         }
      }
+
+
 }
    
