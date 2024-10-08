@@ -29,4 +29,8 @@ public class CartItemModel {
     public int getQuantity() {
         return quantity;
     }
+    public String ToString(){
+       String info= getItem().getName() +" - "+"Quantity: "+getQuantity()+" - "+" $"+getItem().getPrice();
+       return info;
+    }
 }
