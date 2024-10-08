@@ -75,9 +75,8 @@ public class CustomerView {
             return true;
         }
     }
-    public void printTotalPrice(double price){
-         String str="Total price:  $"+price;
-         System.out.println(str);
+    public void printTotalPrice(String formatedPrice){
+         System.out.println(formatedPrice);
 
     }
 
