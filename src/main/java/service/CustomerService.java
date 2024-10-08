@@ -72,8 +72,12 @@ public class CustomerService {
 
     }
     public boolean checkout(String paymentMethod){
-        if (paymentMethod=="Pay on delivery")
+        if (paymentMethod=="Pay on delivery") {
+            OrderModel order =new OrderModel(curCustomer.getEmail(),curCustomer.getCustomerCart().getCartItems(),curCustomer.getCustomerCart().getTotalPrice(),paymentMethod);
+            curCustomer.setCustomerOrders(order);
+            OrderService.getInstance().setOrder(order);
             return true;
+        }
         else {
             boolean ok = handelPaymentMethod(paymentMethod);
             if (ok)
@@ -124,6 +128,8 @@ public class CustomerService {
         }
 
         return orders;
+
+
     }
 
 }
