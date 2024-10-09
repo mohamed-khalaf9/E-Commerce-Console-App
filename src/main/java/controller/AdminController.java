@@ -119,10 +119,8 @@ public class AdminController extends BaseController {
 
         category = displayCategories();
         if(category=="") return;
-
         productId = displayProductsOfCategory(category);
         if(productId==-1) return;
-
         if(view.confirmationMessage("Are you sure you want to remove iPhone 15? (Y/N):") == 'Y') {
            if(service.removeProduct(category, productId))
            {
