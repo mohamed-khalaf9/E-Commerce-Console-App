@@ -1,5 +1,6 @@
 package controller;
 
+import model.OrderModel;
 import service.CustomerService;
 import service.ProductService;
 import view.CustomerView;
@@ -37,7 +38,7 @@ public class CustomerController extends BaseController {
                     viewCart();
                     break;
                 case 3:
-                    // viewOrderHistory();
+                    viewOrderHistory();
                     break;
                 case 4:
 
@@ -173,7 +174,7 @@ public class CustomerController extends BaseController {
             if (productNumber > lst.size() || productNumber < 1)
                 throw new IllegalArgumentException("Enter a valid number");
             else {
-                String productName = service.getCarttemByNumber(productNumber).getItem().getName();
+                String productName = service.getCarttemByNumber(productNumber-1).getItem().getName();
                 ArrayList<String> menu = new ArrayList<>();
                 menu.add("Update Qte Quantity");
                 menu.add("Remove from cart");
@@ -197,7 +198,20 @@ public class CustomerController extends BaseController {
             modifyCart(lst);
         }
     }
+    private void viewOrderHistory(){
+        try {
+            ArrayList<String> lst = service.getOrders();
+            if(lst.size()==0)
+                throw new IllegalArgumentException("There is not any order to view");
+            else
+            view.printOrders(lst, "Your orders: ");
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return;
+        }
 
+    }
 }
 
 

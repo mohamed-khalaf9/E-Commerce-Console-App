@@ -13,8 +13,8 @@ public class OrderModel {
 
 
     public OrderModel(String customerEmail, ArrayList<CartItemModel> orderProducts, double totalPrice, String paymentMethod) {
+       this. orderProducts = new ArrayList<>();
         this.id = idCounter++;
-        orderProducts = new ArrayList<>();
         setCustomerEmail(customerEmail);
         setTotalPrice(totalPrice);
         setPaymentMethod(paymentMethod);
@@ -34,13 +34,17 @@ public class OrderModel {
         return customerEmail;
     }
 
-    public void setOrderProducts(ArrayList<CartItemModel> orderProducts) {
-        for (CartItemModel cartItem : orderProducts) {
+    public void setOrderProducts(ArrayList<CartItemModel> products) {
+        for (CartItemModel cartItem : products) {
             this.orderProducts.add(cartItem);
         }
     }
 
+
     public ArrayList<CartItemModel> getOrderProducts() {
+        if(orderProducts==null)
+            return new ArrayList<>();
+        else
         return orderProducts;
     }
 
@@ -61,12 +65,13 @@ public class OrderModel {
     }
 
     public String ToString() {
-        ArrayList<String>  products=new ArrayList<>();
-        for (int i=0;i<orderProducts.size();i++){
-            products.add(orderProducts.get(i).ToString());
+        ArrayList<String> products = new ArrayList<>();
+        for (CartItemModel item : getOrderProducts()) {
+            products.add(item.ToString());
         }
-        String productStr=String.join("\n",products);
-        String str="Order ID: "+getId()+"\n Products:"+productStr+"Total price: $"+getTotalPrice()+"\nPayment method: "+getPaymentMethod();
+        String productStr = String.join("\n", products);
+        String str = "Order ID: " + getId() + "\n Products:" + productStr + "\nTotal price: $" + getTotalPrice() + "\nPayment method: " + getPaymentMethod();
         return str;
     }
+
 }
