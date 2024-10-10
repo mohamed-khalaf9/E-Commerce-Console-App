@@ -154,8 +154,8 @@ To run this Java console application, you'll need to have the **Java Development
    
 ## Authors
 
-- **Mohamed Khalaf** - [GitHub Profile Link](https://github.com/roqia-med7at)
-- **Roqia Medhat** - [GitHub Profile Link](https://github.com/mohamed-khalaf9)
+- **Mohamed Khalaf** - [GitHub Profile Link](https://github.com/mohamed-khalaf9)
+- **Roqia Medhat** - [GitHub Profile Link](https://github.com/roqia-med7at)
 
 We collaborated on the development of this project, sharing ideas, features, and coding tasks throughout the process.
 
