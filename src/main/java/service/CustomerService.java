@@ -76,6 +76,7 @@ public class CustomerService {
             OrderModel order =new OrderModel(curCustomer.getEmail(),curCustomer.getCustomerCart().getCartItems(),curCustomer.getCustomerCart().getTotalPrice(),paymentMethod);
             curCustomer.setCustomerOrders(order);
             OrderService.getInstance().setOrder(order);
+            curCustomer.getCustomerCart().reduceStockQuantity();
             curCustomer.getCustomerCart().getCartItems().clear();
             return true;
         }
