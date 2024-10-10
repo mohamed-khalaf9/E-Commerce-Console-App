@@ -5,5 +5,7 @@ public class Main {
     {
         ECommerce ec = new ECommerce();
         ec.run();
+
+        // v1.0
     }
 }
