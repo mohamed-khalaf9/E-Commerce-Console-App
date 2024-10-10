@@ -36,7 +36,9 @@ This project was a collaborative effort between Roqia, and me (Mohamed Khalaf). 
 
 ## System Design and Architecture:
 - UML (Class Diagram):
-  
+> [!TIP]
+> for high-quality diagram here is a link on Drive and from Drive you can open it in draw.io [https://drive.google.com/file/d/1dN3UX68IhUo-Y3JmDpM36y6tO5htRcCa/view?usp=sharing]
+
   ![E-Commerce-Console-App3 drawio (3)](https://github.com/user-attachments/assets/74e5d7e8-6762-4aa2-89bc-e1b3355c0f85)
 
 ## Design Patterns, Code Quality, and Principles: 
@@ -132,7 +134,7 @@ To run this Java console application, you'll need to have the **Java Development
 1. **Clone the GitHub Repository**:  
    If you haven't already, clone the repository to your local machine using the following command:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/mohamed-khalaf9/E-Commerce-Console-App.git
     ```
 2. **Navigate into the Project Directory:**
    ```bash
@@ -149,10 +151,11 @@ To run this Java console application, you'll need to have the **Java Development
    ```
 ## Demo: 
  - in progress..........
+   
 ## Authors
 
-- **Mohamed Khalaf** - [GitHub Profile Link](https://github.com/your-username)
-- **Roqia Medhat** - [GitHub Profile Link](https://github.com/friend-username)
+- **Mohamed Khalaf** - [GitHub Profile Link](https://github.com/roqia-med7at)
+- **Roqia Medhat** - [GitHub Profile Link](https://github.com/mohamed-khalaf9)
 
 We collaborated on the development of this project, sharing ideas, features, and coding tasks throughout the process.
 
