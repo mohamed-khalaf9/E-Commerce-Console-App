@@ -42,7 +42,7 @@ This project was a collaborative effort between Roqia, and me (Mohamed Khalaf). 
   ![E-Commerce-Console-App3 drawio (3)](https://github.com/user-attachments/assets/74e5d7e8-6762-4aa2-89bc-e1b3355c0f85)
 
 ## Design Patterns, Code Quality, and Principles: 
- Throughout the development of this project, we focused on writing clean, maintainable, and scalable code by applying **MVC** as architectural and design patterns and adhering to **SOLID principles** and Object-Oriented Programming (OOP) 
+ Throughout the development of this project, we focused on writing clean, maintainable, and scalable code by applying **MVC** as architectural pattern and design patterns and adhering to **SOLID principles** and Object-Oriented Programming (OOP) 
  concepts. This approach ensured that our code was easy to extend, modify, and maintain as the project grew.
  - **Design patterns:**
    
@@ -110,7 +110,8 @@ This strategy allowed us to work on features in parallel, maintain code quality 
 
 To run this Java console application, you'll need to have the **Java Development Kit (JDK)** installed on your machine and set up properly. Follow these steps to install and configure the JDK and run the application.
 
-##### Step 1: Install the JDK
+- **Step 1: Install the JDK**
+  
 1. **Download the JDK**:  
    Visit the official [Oracle JDK download page](https://www.oracle.com/java/technologies/javase-downloads.html) or [OpenJDK](https://jdk.java.net/) to download the latest version of the JDK for your operating system.
 2. **Install the JDK**:  
@@ -121,7 +122,8 @@ To run this Java console application, you'll need to have the **Java Development
    ```bash
    java -version
    
-##### Step 2: Set Up JDK (Make it Visible to Terminal)
+- **Step 2: Set Up JDK (Make it Visible to Terminal)**
+  
  **For Windows:**
 1. **Set Environment Variables**:  
    - Go to `Control Panel` → `System` → `Advanced system settings`.
@@ -130,7 +132,8 @@ To run this Java console application, you'll need to have the **Java Development
    - Add the path to the `bin` directory of your JDK installation (e.g., `C:\Program Files\Java\jdk-<version>\bin`).
    - Click OK and restart your terminal.
 
-##### Step 3: Clone the Repository
+- **Step 3: Clone the Repository**
+  
 1. **Clone the GitHub Repository**:  
    If you haven't already, clone the repository to your local machine using the following command:
    ```bash
@@ -140,7 +143,7 @@ To run this Java console application, you'll need to have the **Java Development
    ```bash
    cd your-repo-name
    ```
-##### Step 4: Compile and Run the Application
+- **Step 4: Compile and Run the Application**
 
 1. **Compile and run the Application**:  
    Open your terminal and navigate to the project's `src` folder. Run the following command to compile the application:
